@@ -1,0 +1,41 @@
+---
+import { Phone, Mail } from "lucide-react";
+---
+
+<div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+    <!-- Phone Button -->
+    <a
+        href="tel:+4975229785800"
+        class="group flex items-center justify-end"
+        aria-label="Anrufen"
+    >
+        <span
+            class="bg-dark text-white text-xs font-bold uppercase tracking-widest px-0 py-2 w-0 overflow-hidden group-hover:w-auto group-hover:px-4 transition-all duration-300 rounded-l-full whitespace-nowrap"
+        >
+            Anrufen
+        </span>
+        <div
+            class="w-12 h-12 bg-accent hover:bg-dark text-white rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 z-10 shrink-0"
+        >
+            <Phone size={20} />
+        </div>
+    </a>
+
+    <!-- Mail Button -->
+    <a
+        href="mailto:info@n13-mode.de"
+        class="group flex items-center justify-end"
+        aria-label="E-Mail schreiben"
+    >
+        <span
+            class="bg-dark text-white text-xs font-bold uppercase tracking-widest px-0 py-2 w-0 overflow-hidden group-hover:w-auto group-hover:px-4 transition-all duration-300 rounded-l-full whitespace-nowrap"
+        >
+            E-Mail
+        </span>
+        <div
+            class="w-12 h-12 bg-accent hover:bg-dark text-white rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 z-10 shrink-0"
+        >
+            <Mail size={20} />
+        </div>
+    </a>
+</div>

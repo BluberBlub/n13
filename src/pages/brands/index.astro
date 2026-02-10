@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { brands } from "../../data/brands";
+
+const title = "Unsere Marken – N13";
+const description =
+    "Entdecke unsere kuratierte Auswahl an Mode- und Lifestyle-Marken im N13. Von Desoto bis A Beautiful Story.";
+---
+
+<BaseLayout title={title} description={description}>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 bg-dark overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-5"
+            style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"
+        >
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h1
+                class="font-heading text-4xl md:text-6xl font-light text-white tracking-wider mb-6"
+            >
+                Unsere Markenwelt
+            </h1>
+            <p class="text-white/60 text-lg max-w-2xl mx-auto font-light">
+                Eine handverlesene Auswahl an Labels, die uns durch Qualität,
+                Stil und Geschichte begeistern.
+            </p>
+        </div>
+    </section>
+
+    <!-- Brands Grid -->
+    <section class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    brands.map((brand) => (
+                        <a
+                            href={`/brands/${brand.slug}`}
+                            class="group block bg-white border border-border overflow-hidden hover:border-accent hover:shadow-lg transition-all duration-300"
+                        >
+                            <div class="aspect-[4/3] bg-gray-100 relative overflow-hidden flex items-center justify-center">
+                                {brand.image ? (
+                                    <img
+                                        src={brand.image}
+                                        alt={brand.name}
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <div class="flex flex-col items-center justify-center p-6 text-center">
+                                        <span class="font-heading text-2xl text-dark mb-2">
+                                            {brand.name}
+                                        </span>
+                                        <span class="text-xs text-text-secondary uppercase tracking-widest opacity-60">
+                                            N13 Selection
+                                        </span>
+                                    </div>
+                                )}
+                                <div class="absolute inset-0 bg-dark/0 group-hover:bg-dark/10 transition-colors duration-300" />
+                            </div>
+                            <div class="p-8">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    {brand.categories.slice(0, 3).map((cat) => (
+                                        <span class="text-[10px] uppercase tracking-wider px-2 py-1 bg-bg-warm text-dark/70 rounded-full">
+                                            {cat}
+                                        </span>
+                                    ))}
+                                </div>
+                                <h3 class="font-heading text-xl text-dark mb-2 group-hover:text-accent transition-colors duration-300">
+                                    {brand.name}
+                                </h3>
+                                <p class="text-text-secondary text-sm font-light line-clamp-2">
+                                    {brand.shortDescription}
+                                </p>
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+
+            <div class="mt-20 text-center">
+                <p class="text-text-secondary text-lg mb-8 font-light">
+                    Nicht das passende gefunden? <br />
+                    Komm vorbei und lass dich von unserem gesamten Sortiment inspirieren.
+                </p>
+                <a
+                    href="/#contact"
+                    class="inline-block px-10 py-4 bg-dark text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-accent transition-all duration-300"
+                >
+                    Kontakt & Anfahrt
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

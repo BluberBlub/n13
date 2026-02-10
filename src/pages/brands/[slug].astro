@@ -15,59 +15,81 @@ const { brand } = Astro.props as { brand: Brand };
 
 <BaseLayout title={`${brand.name} – N13`} description={brand.shortDescription}>
     <!-- Hero -->
-    <section class="relative pt-32 pb-20 bg-dark overflow-hidden">
-        <div
-            class="absolute inset-0 opacity-5"
-            style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"
-        >
-        </div>
+    <section
+        class="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-dark overflow-hidden"
+    >
+        {
+            brand.image && (
+                <div class="absolute inset-0 z-0">
+                    <img
+                        src={brand.image}
+                        alt={brand.name}
+                        class="w-full h-full object-cover opacity-50"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
+                </div>
+            )
+        }
+
         <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
                 {
                     brand.categories.map((cat: string) => (
-                        <span class="text-xs px-3 py-1 bg-white/10 text-white/70 rounded-full">
+                        <span class="text-xs px-3 py-1 bg-white/20 backdrop-blur-sm text-white border border-white/20 rounded-full uppercase tracking-wider">
                             {cat}
                         </span>
                     ))
                 }
             </div>
             <h1
-                class="font-heading text-4xl md:text-6xl font-light text-white tracking-wider"
+                class="font-heading text-5xl md:text-7xl font-bold text-white tracking-wider mb-6 drop-shadow-lg"
             >
                 {brand.name}
             </h1>
-            <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto">
+            <p
+                class="text-white/80 text-xl font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+            >
                 {brand.shortDescription}
             </p>
         </div>
     </section>
 
     <!-- Content -->
-    <section class="py-24 lg:py-32 bg-surface">
+    <section class="py-24 bg-white">
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
-            <div class="text-text-secondary leading-relaxed text-lg">
-                <p>{brand.description}</p>
+            <div
+                class="prose prose-lg prose-p:text-text-secondary prose-headings:font-heading prose-headings:font-light mx-auto"
+            >
+                <p class="whitespace-pre-line leading-relaxed text-lg">
+                    {brand.description}
+                </p>
             </div>
 
-            <div class="mt-16 p-8 bg-bg-warm rounded-2xl text-center">
-                <p class="font-heading text-xl text-dark font-light">
-                    Entdecke {brand.name} bei uns im Store –<br />
-                    wir freuen uns auf deinen Besuch!
+            <div
+                class="mt-20 p-10 bg-bg-warm rounded-sm text-center border border-border"
+            >
+                <h3 class="font-heading text-2xl text-dark mb-4">
+                    Entdecke {brand.name} im N13
+                </h3>
+                <p class="text-text-secondary mb-8 font-light">
+                    Komm vorbei, fühl die Stoffe und probier deine Favoriten an.<br
+                    />
+                    Wir beraten dich gerne persönlich.
                 </p>
                 <div
-                    class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+                    class="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
                     <a
-                        href="/kontakt"
-                        class="px-6 py-3 bg-accent text-white text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-accent-dark transition-all duration-300"
+                        href="/#contact"
+                        class="px-8 py-3 bg-dark text-white text-sm font-bold tracking-[0.2em] uppercase hover:bg-accent transition-all duration-300"
                     >
-                        Kontakt aufnehmen
+                        Zum Store
                     </a>
                     <a
-                        href="/modewelt"
-                        class="px-6 py-3 border border-border text-text text-sm font-medium tracking-wider uppercase rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
+                        href="/#brands"
+                        class="px-8 py-3 border border-dark text-dark text-sm font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white transition-all duration-300"
                     >
-                        Alle Brands
+                        Zurück zur Übersicht
                     </a>
                 </div>
             </div>
@@ -75,14 +97,18 @@ const { brand } = Astro.props as { brand: Brand };
     </section>
 
     <!-- Other Brands -->
-    <section class="py-24 lg:py-32 bg-bg">
+    <section class="py-24 bg-surface border-t border-border">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="font-heading text-3xl font-light text-dark">
-                    Weitere Brands
+                <span
+                    class="text-accent text-xs tracking-[0.2em] uppercase font-bold"
+                    >Entdecke mehr</span
+                >
+                <h2 class="font-heading text-3xl font-medium text-dark mt-2">
+                    Weitere Labels
                 </h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {
                     brands
                         .filter((b) => b.slug !== brand.slug)
@@ -90,9 +116,19 @@ const { brand } = Astro.props as { brand: Brand };
                         .map((b) => (
                             <a
                                 href={`/brands/${b.slug}`}
-                                class="group p-6 bg-surface rounded-xl border border-border-light hover:border-accent/30 text-center transition-all duration-300"
+                                class="group relative overflow-hidden aspect-square bg-white flex items-center justify-center border border-border hover:border-accent transition-all duration-300"
                             >
-                                <span class="font-heading text-lg text-dark group-hover:text-accent transition-colors duration-300">
+                                {b.image ? (
+                                    <>
+                                        <img
+                                            src={b.image}
+                                            alt={b.name}
+                                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                                        />
+                                        <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition-colors duration-300" />
+                                    </>
+                                ) : null}
+                                <span class="relative z-10 font-heading text-xl text-white bg-dark/80 px-4 py-2 drop-shadow-md">
                                     {b.name}
                                 </span>
                             </a>

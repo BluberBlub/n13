@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { brands } from "../data/brands";
 import { siteConfig } from "../data/site";
-import MapSection from "../components/MapSection.astro";
 import InstagramFeed from "../components/InstagramFeed";
 import ReviewsSection from "../components/ReviewsSection.astro";
 import Marquee from "../components/Marquee.astro";
@@ -44,17 +43,19 @@ import ContactForm from "../components/ContactForm";
 			>
 				<span class="block">N13</span>
 				<span
-					class="block ml-12 text-transparent text-stroke-2 opacity-50"
+					<span
+					class="block ml-12 text-transparent text-stroke-2 text-stroke-white opacity-80"
+					style="-webkit-text-stroke: 2px rgba(255,255,255,0.8);"
 					>MODE</span
 				>
 			</h1>
 			<p
-				class="text-white/70 text-lg md:text-xl font-light max-w-2xl mx-auto mb-4 leading-relaxed"
+				class="text-white/90 text-lg md:text-xl font-light max-w-2xl mx-auto mb-4 leading-relaxed drop-shadow-md"
 			>
 				Herzlich Willkommen
 			</p>
 			<p
-				class="text-white/50 text-base md:text-lg font-light max-w-xl mx-auto leading-relaxed"
+				class="text-white/80 text-base md:text-lg font-light max-w-xl mx-auto leading-relaxed drop-shadow-md"
 			>
 				Individuell wie Du – im Herzen von Wangen im Allgäu
 			</p>
@@ -62,14 +63,14 @@ import ContactForm from "../components/ContactForm";
 				class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
 			>
 				<a
-					href="/modewelt"
-					class="px-8 py-3.5 bg-accent text-white text-sm font-medium tracking-wider uppercase hover:bg-accent-dark transition-all duration-300"
+					href="#brands"
+					class="px-8 py-3.5 bg-white text-dark text-sm font-medium tracking-wider uppercase hover:bg-accent hover:text-white transition-all duration-300"
 				>
-					Unsere Brands entdecken
+					Unsere Brands
 				</a>
 				<a
-					href="/das-sind-wir"
-					class="px-8 py-3.5 border border-white/30 text-white text-sm font-medium tracking-wider uppercase hover:bg-white/10 transition-all duration-300"
+					href="#about"
+					class="px-8 py-3.5 border border-white text-white text-sm font-medium tracking-wider uppercase hover:bg-white hover:text-dark transition-all duration-300"
 				>
 					Mehr erfahren
 				</a>
@@ -79,41 +80,33 @@ import ContactForm from "../components/ContactForm";
 		<!-- Scroll indicator -->
 		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
 			<div
-				class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2"
+				class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2"
 			>
-				<div class="w-1 h-3 bg-white/50 rounded-full"></div>
+				<div class="w-1 h-3 bg-white rounded-full"></div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Marquee Transition -->
-	<div class="bg-dark py-4 rotate-1 z-20 relative -mt-10 overflow-hidden">
-		<Marquee text="MODE & LIFESTYLE • WANGEN IM ALLGÄU • CONCEPT STORE" />
-	</div>
-
-	<!-- About Section (Was Welcome) -->
-	<section
-		id="about"
-		class="py-32 lg:py-40 bg-surface -mt-20 pt-32"
-		style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);"
-	>
+	<!-- About Section (Light V3) -->
+	<section id="about" class="py-24 lg:py-32 bg-bg text-dark">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
 			<div
-				class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+				class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
 			>
 				<!-- Image Column -->
 				<div class="relative order-2 lg:order-1">
 					<div
-						class="aspect-[3/4] overflow-hidden shadow-2xl border-4 border-dark relative z-10"
+						class="aspect-[3/4] overflow-hidden relative z-10 shadow-xl"
 					>
 						<img
-							src="/images/about-us.jpg"
+							src="/images/about-us-v2.jpg"
 							alt="Natalie & Nicola Endres"
-							class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+							class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
 						/>
 					</div>
+					<!-- Minimalist decorative element -->
 					<div
-						class="absolute -bottom-6 -right-6 w-full h-full border-4 border-accent -z-0 hidden lg:block"
+						class="absolute -bottom-8 -left-8 w-64 h-64 bg-accent/10 -z-0 rounded-full hidden lg:block"
 					>
 					</div>
 				</div>
@@ -121,48 +114,53 @@ import ContactForm from "../components/ContactForm";
 				<!-- Text Column -->
 				<div class="order-1 lg:order-2">
 					<span
-						class="text-accent text-sm tracking-[0.2em] uppercase font-medium block mb-4"
+						class="text-accent text-xs tracking-[0.3em] uppercase font-bold"
 					>
-						Unsere Geschichte
+						Über Uns
 					</span>
 					<h2
-						class="font-heading text-3xl md:text-5xl font-light text-dark mb-8"
+						class="font-heading text-4xl md:text-6xl font-medium text-dark mt-4 mb-8 leading-tight"
 					>
-						Das sind wir – N13
+						Mehr als nur <br /> ein Modegeschäft
 					</h2>
 					<div
-						class="space-y-6 text-text-secondary leading-relaxed text-lg"
+						class="space-y-6 text-text-secondary font-light text-lg"
 					>
 						<p>
-							Entdecke eine einzigartige Mischung aus Mode,
-							Lifestyle und Genuss im Herzen von Wangen. Als
-							traditionsreiches Familienunternehmen in der <strong
-								class="text-dark">13. Generation</strong
-							>
-							laden wir, Natalie & Nicola Endres, dich herzlich ein.
+							Im Herzen von Wangen im Allgäu haben wir, Natalie
+							und Nicola Endres, uns einen Traum erfüllt. Das N13
+							ist unsere Vision von modernem Shopping –
+							persönlich, stilvoll und immer am Puls der Zeit.
 						</p>
 						<p>
-							Unser Concept-Store N13 ist mehr als nur ein
-							Geschäft – es ist ein Erlebnis. Wir glauben fest
-							daran, dass wahre Schönheit in der Vielfalt liegt.
-							<em class="text-dark font-medium block mt-2"
-								>„Normal kann jeder, aber wir sind Anders"</em
-							>
+							Wir lieben Mode, die Geschichten erzählt. Jedes Teil
+							in unserem Store ist handverlesen und spiegelt
+							unsere Leidenschaft für Qualität und Design wider.
+							Bei uns findest du keine Massenware, sondern
+							Lieblingsstücke.
+						</p>
+						<p>
+							<strong>Wieso wir keinen Online Shop haben?</strong
+							><br />
+							Wir glauben daran, dass ein Besuch in unserem Geschäft
+							mehr ist als nur eine Transaktion – es ist eine Möglichkeit,
+							sich zu inspirieren, zu entdecken und Teil einer Gemeinschaft
+							zu werden. Persönliche Beziehungen und individuelle Beratung
+							sind uns wichtiger als Klicks. Komm vorbei und erlebe
+							den Vibe vor Ort!
 						</p>
 					</div>
-					<div
-						class="mt-12 p-8 bg-bg-warm rounded-sm border-l-4 border-accent"
-					>
+
+					<div class="mt-12 pt-8 border-t border-border">
 						<p
-							class="font-heading text-xl text-dark font-light italic"
+							class="font-heading text-2xl text-dark font-light italic"
 						>
-							„Wir freuen uns darauf, dich im N13 willkommen zu
-							heißen!"
+							„Normal kann jeder, aber wir sind Anders"
 						</p>
 						<p
-							class="mt-4 text-accent font-medium tracking-wider text-sm uppercase"
+							class="mt-4 text-text-muted font-medium tracking-wider text-xs uppercase"
 						>
-							Natalie & Nicola
+							— Natalie & Nicola Endres
 						</p>
 					</div>
 				</div>
@@ -170,72 +168,36 @@ import ContactForm from "../components/ContactForm";
 		</div>
 	</section>
 
-	<!-- Philosophy Section -->
-	<section
-		id="philosophy"
-		class="py-32 lg:py-40 bg-bg -mt-24 pt-32"
-		style="clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);"
-	>
-		<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-			<span
-				class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
-				>Unsere Philosophie</span
-			>
-			<h2
-				class="font-heading text-3xl md:text-4xl font-light text-dark mt-4 mb-8"
-			>
-				Wieso wir keinen Online Shop haben?
-			</h2>
-			<div class="space-y-6 text-text-secondary leading-relaxed text-lg">
-				<p>
-					Wir glauben daran, dass ein Besuch in unserem Geschäft mehr
-					ist als nur eine Transaktion – es ist eine Möglichkeit, sich
-					zu inspirieren, zu entdecken und Teil einer Gemeinschaft zu
-					werden.
-				</p>
-				<p>
-					Persönliche Beziehungen und individuelle Beratung sind uns
-					wichtiger als Klicks. Komm vorbei und erlebe den Vibe vor
-					Ort!
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<!-- Brands Grid -->
-	<section
-		id="brands"
-		class="py-32 lg:py-40 bg-bg -mt-24 pt-32"
-		style="clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);"
-	>
+	<!-- Brands Grid (Reverted to V2 Style) -->
+	<section id="brands" class="py-24 lg:py-32 bg-bg-warm">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
 			<div class="text-center mb-16">
 				<span
-					class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+					class="text-accent text-xs tracking-[0.3em] uppercase font-bold"
 				>
 					Unsere Marken
 				</span>
 				<h2
-					class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-6"
+					class="font-heading text-4xl md:text-5xl font-medium text-dark mt-4 mb-6"
 				>
-					Unsere Brands
+					Curated Selection
 				</h2>
-				<p class="text-text-secondary max-w-2xl mx-auto">
-					Ein kleiner Einblick in die Vielfalt unserer Labels – diese
-					und noch weitere Brands erwarten euch im N13.
+				<p
+					class="text-text-secondary max-w-2xl mx-auto font-light text-lg"
+				>
+					Handverlesene Labels für deinen individuellen Stil.
 				</p>
 			</div>
 
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-			>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
 				{
-					brands.map((brand) => (
+					brands.slice(0, 9).map((brand, index) => (
 						<a
 							href={`/brands/${brand.slug}`}
-							class="group bg-surface overflow-hidden border border-border-light hover:border-accent/30 hover:shadow-lg transition-all duration-500"
+							class="group relative overflow-hidden aspect-[3/4] w-full block bg-gray-100"
 						>
-							<div class="aspect-[4/3] bg-bg-warm relative overflow-hidden">
+							{/* Background Image */}
+							<div class="absolute inset-0">
 								{brand.image ? (
 									<img
 										src={brand.image}
@@ -243,79 +205,86 @@ import ContactForm from "../components/ContactForm";
 										class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 									/>
 								) : (
-									<div class="absolute inset-0 flex items-center justify-center">
-										<span class="font-heading text-3xl md:text-4xl font-light text-dark/20 group-hover:text-accent/40 transition-colors duration-500 tracking-wider">
+									<div class="w-full h-full bg-gray-200 flex items-center justify-center">
+										<span class="text-dark font-heading text-xl">
 											{brand.name}
 										</span>
 									</div>
 								)}
-								<div class="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 							</div>
-							<div class="p-6">
-								<h3 class="font-heading text-xl font-semibold text-dark group-hover:text-accent transition-colors duration-300 mb-2">
+
+							{/* Overlay Gradient (V2 Style) */}
+							<div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+							{/* Content */}
+							<div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+								<h3 class="font-heading text-3xl text-white mb-2 drop-shadow-md">
 									{brand.name}
 								</h3>
-								<p class="text-sm text-text-secondary line-clamp-2 mb-4">
-									{brand.shortDescription}
+								<div class="h-1 w-12 bg-accent mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+								<p class="text-white/90 text-sm font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 drop-shadow-sm">
+									{brand.categories[0]}
 								</p>
-								<div class="flex flex-wrap gap-2">
-									{brand.categories
-										.slice(0, 3)
-										.map((cat: string) => (
-											<span class="text-xs px-2.5 py-1 bg-bg-warm text-text-muted rounded-full">
-												{cat}
-											</span>
-										))}
-								</div>
 							</div>
 						</a>
 					))
 				}
 			</div>
 
-			<div class="text-center mt-12">
+			<div class="text-center mt-16">
 				<a
-					href="/modewelt"
-					class="inline-flex items-center gap-2 px-8 py-3.5 border border-dark text-dark text-sm font-medium tracking-wider uppercase hover:bg-dark hover:text-white transition-all duration-300"
+					href="/brands"
+					class="inline-flex items-center gap-2 px-10 py-4 bg-dark text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-accent transition-all duration-300"
 				>
-					Alle Brands entdecken
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
-						></path></svg
-					>
+					Alle Brands
 				</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Instagram Feed -->
+	<!-- Visit Us CTA Banner -->
 	<section
-		class="py-32 lg:py-40 bg-bg-warm -mt-24 pt-32"
-		style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);"
+		class="py-20 bg-dark text-white text-center relative overflow-hidden"
 	>
+		<div class="absolute inset-0 opacity-20">
+			<img
+				src="/images/hero-bg.jpg"
+				class="w-full h-full object-cover"
+				alt="Store Background"
+			/>
+		</div>
+		<div class="relative z-10 max-w-3xl mx-auto px-6">
+			<h2 class="font-heading text-4xl md:text-5xl mb-6">
+				Komm vorbei & lass dich beraten
+			</h2>
+			<p class="text-white/80 text-lg mb-8 font-light">
+				Wir freuen uns darauf, dich persönlich im N13 begrüßen zu
+				dürfen. Erlebe die Kollektionen hautnah.
+			</p>
+			<a
+				href="#contact"
+				class="inline-block border border-white px-10 py-4 text-sm font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-dark transition-all duration-300"
+			>
+				Zum Store
+			</a>
+		</div>
+	</section>
+
+	<!-- Instagram Feed -->
+	<section class="py-24 lg:py-32 bg-surface border-t border-border">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
 			<span
-				class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+				class="text-accent text-xs tracking-[0.3em] uppercase font-bold"
 			>
-				Folge uns
+				Social
 			</span>
 			<h2
-				class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-6"
+				class="font-heading text-4xl md:text-5xl font-medium text-dark mt-4 mb-6"
 			>
-				Hier findest Du uns auf Instagram
+				@n13store
 			</h2>
-			<p class="text-text-secondary mb-10 max-w-lg mx-auto">
-				Entdecke unsere neuesten Looks, Events und Behind-the-Scenes auf
-				Instagram.
+			<p class="text-text-secondary mb-12 max-w-lg mx-auto font-light">
+				Inspiration, Neuheiten und Einblicke in unseren Store.
 			</p>
 
 			<div class="mb-12">
@@ -324,92 +293,71 @@ import ContactForm from "../components/ContactForm";
 					accessToken={import.meta.env.PUBLIC_INSTAGRAM_TOKEN}
 				/>
 			</div>
-
-			<a
-				href={siteConfig.social.instagram}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-3 px-8 py-4 bg-dark text-white hover:bg-dark-soft transition-all duration-300"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					><rect width="20" height="20" x="2" y="2" rx="5" ry="5"
-					></rect><path
-						d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-					></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"
-					></line></svg
-				>
-				<span class="text-sm font-medium tracking-wider uppercase"
-					>@n13store</span
-				>
-			</a>
 		</div>
 	</section>
 
-	<!-- Reviews Section -->
+	<!-- Reviews Section (Restored) -->
 	<ReviewsSection />
 
-	<!-- Map Section -->
-	<MapSection />
-
-	<!-- Contact Section -->
+	<!-- Contact Section (Restored with Map + Form) -->
 	<section
 		id="contact"
-		class="py-32 lg:py-40 bg-surface -mt-24 pt-32"
-		style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);"
+		class="py-24 lg:py-32 bg-bg-warm relative overflow-hidden"
 	>
-		<div class="max-w-7xl mx-auto px-6 lg:px-8">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-				<!-- Contact Info -->
-				<div>
+		<div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+				<!-- Contact Info & Map -->
+				<div class="order-1 lg:order-1 pt-8">
 					<span
-						class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
-						>Kontakt</span
+						class="text-accent text-xs tracking-[0.3em] uppercase font-bold"
 					>
+						Kontakt
+					</span>
 					<h2
-						class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-8"
+						class="font-heading text-4xl md:text-5xl font-medium text-dark mt-4 mb-8"
 					>
-						Wir freuen uns auf Dich
+						Besuch uns
 					</h2>
-					<div class="space-y-8">
+					<div
+						class="space-y-10 text-lg font-light text-text-secondary mb-12"
+					>
 						<div>
-							<h3
-								class="font-heading text-xl font-semibold text-dark mb-2"
+							<strong
+								class="block text-dark font-medium text-sm uppercase tracking-wider mb-2"
+								>Adresse</strong
 							>
-								Adresse
-							</h3>
-							<p class="text-text-secondary">
+							<p>
 								{siteConfig.company.address}<br />
 								{siteConfig.company.zip}
 								{siteConfig.company.city}
 							</p>
-						</div>
-						<div>
-							<h3
-								class="font-heading text-xl font-semibold text-dark mb-2"
+							<a
+								href="https://www.google.com/maps/search/?api=1&query=N13+Wangen"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex items-center gap-2 mt-4 text-accent text-sm font-bold tracking-widest uppercase hover:text-dark transition-colors"
 							>
-								Öffnungszeiten
-							</h3>
-							<p class="text-text-secondary">
+								Route planen &rarr;
+							</a>
+						</div>
+
+						<div>
+							<strong
+								class="block text-dark font-medium text-sm uppercase tracking-wider mb-2"
+								>Öffnungszeiten</strong
+							>
+							<p>
 								{siteConfig.openingHours.weekdays}<br />
 								{siteConfig.openingHours.saturday}
 							</p>
 						</div>
+
 						<div>
-							<h3
-								class="font-heading text-xl font-semibold text-dark mb-2"
+							<strong
+								class="block text-dark font-medium text-sm uppercase tracking-wider mb-2"
+								>Kontakt</strong
 							>
-								Kontakt
-							</h3>
-							<p class="text-text-secondary">
+							<p>
 								<a
 									href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
 									class="hover:text-accent transition-colors"
@@ -425,12 +373,37 @@ import ContactForm from "../components/ContactForm";
 							</p>
 						</div>
 					</div>
+
+					<!-- Map Iframe Embedded (No Scroll Zoom) -->
+					<div
+						class="w-full h-[300px] bg-white border border-border shadow-sm p-2 relative grayscale hover:grayscale-0 transition-grayscale duration-500 group"
+					>
+						<iframe
+							src="https://www.openstreetmap.org/export/embed.html?bbox=9.8300,47.6850,9.8360,47.6890&layer=mapnik&marker=47.6870,9.8330"
+							width="100%"
+							height="100%"
+							style="border:0; pointer-events: none;"
+							allowfullscreen=""
+							loading="lazy"
+							class="group-hover:pointer-events-auto"></iframe>
+						<div
+							class="absolute inset-0 bg-transparent group-hover:hidden pointer-events-none flex items-center justify-center"
+						>
+							<span class="sr-only">Karte aktivieren</span>
+						</div>
+					</div>
 				</div>
 
 				<!-- Contact Form -->
 				<div
-					class="bg-white p-8 lg:p-12 shadow-2xl border-t-4 border-accent"
+					class="bg-white p-8 lg:p-12 shadow-sm border border-border order-2 lg:order-2"
 				>
+					<h3 class="font-heading text-2xl text-dark mb-6">
+						Schreib uns
+					</h3>
+					<p class="text-text-secondary mb-8 font-light">
+						Fragen zu unseren Brands oder Styles? Meld dich gerne!
+					</p>
 					<ContactForm client:visible />
 				</div>
 			</div>

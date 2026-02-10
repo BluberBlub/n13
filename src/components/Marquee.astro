@@ -8,15 +8,15 @@ const { text, repeat = 10 } = Astro.props;
 ---
 
 <div
-    class="relative flex overflow-hidden py-4 bg-accent/5 border-y border-accent/20"
+    class="relative flex overflow-x-hidden bg-accent/10 py-4 border-y border-accent/20"
 >
     <div class="animate-marquee whitespace-nowrap flex gap-8 items-center">
         {
             Array(repeat)
                 .fill(null)
                 .map(() => (
-                    <span class="text-4xl md:text-6xl font-heading font-bold text-transparent stroke-text uppercase tracking-widest opacity-30">
-                        {text} •
+                    <span class="mx-4 text-4xl md:text-6xl font-heading font-bold text-white/20 uppercase tracking-widest">
+                        {text}
                     </span>
                 ))
         }

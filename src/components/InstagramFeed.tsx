@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Instagram } from 'lucide-react';
 
 interface InstagramPost {
     id: string;
@@ -20,37 +21,40 @@ export default function InstagramFeed({ accessToken, limit = 4 }: InstagramFeedP
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        async function fetchInstagramPosts() {
-            // If no token, we can't fetch. 
-            // In production, you might want a server-side proxy to hide the token,
-            // but for client-side Basic Display API, the token is exposed anyway.
-            if (!accessToken) {
-                setLoading(false);
-                return;
-            }
-
+        async function fetchPosts() {
             try {
-                const fields = 'id,media_type,media_url,permalink,thumbnail_url,caption';
-                const url = `https://graph.instagram.com/me/media?fields=${fields}&access_token=${accessToken}&limit=${limit}`;
+                const token = import.meta.env.PUBLIC_INSTAGRAM_TOKEN;
+                if (!token) throw new Error('No token');
 
-                const response = await fetch(url);
+                const response = await fetch(
+                    `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${token}`
+                );
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch Instagram posts');
-                }
+                if (!response.ok) throw new Error('Fetch failed');
 
                 const data = await response.json();
-                setPosts(data.data || []);
+                if (data.data) {
+                    setPosts(data.data.slice(0, 9));
+                } else {
+                    throw new Error('No data');
+                }
             } catch (err) {
-                console.error('Instagram fetch error:', err);
-                setError(true);
+                console.warn('Instagram fetch failed, using fallback:', err);
+                // Fallback Mock Data
+                setPosts([
+                    { id: '1', media_url: '/images/brands/object.jpg', permalink: 'https://instagram.com', caption: 'New Collection', media_type: 'IMAGE' },
+                    { id: '2', media_url: '/images/brands/happy-socks.jpg', permalink: 'https://instagram.com', caption: 'Socks Love', media_type: 'IMAGE' },
+                    { id: '3', media_url: '/images/brands/vila.jpg', permalink: 'https://instagram.com', caption: 'Summer Vibes', media_type: 'IMAGE' },
+                    { id: '4', media_url: '/images/brands/blend.jpg', permalink: 'https://instagram.com', caption: 'Denim Days', media_type: 'IMAGE' },
+                    { id: '5', media_url: '/images/brands/b-young.jpg', permalink: 'https://instagram.com', caption: 'Style Inspo', media_type: 'IMAGE' },
+                    { id: '6', media_url: '/images/hero-bg.jpg', permalink: 'https://instagram.com', caption: 'Store Atmosphere', media_type: 'IMAGE' }
+                ] as InstagramPost[]);
             } finally {
                 setLoading(false);
             }
         }
-
-        fetchInstagramPosts();
-    }, [accessToken, limit]);
+        fetchPosts();
+    }, []);
 
     // Fallback content if no posts (error or no token)
     if (!loading && (error || posts.length === 0)) {
@@ -74,36 +78,52 @@ export default function InstagramFeed({ accessToken, limit = 4 }: InstagramFeedP
     }
 
     return (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 p-4">
-            {loading
-                ? Array.from({ length: limit }).map((_, i) => (
-                    <div key={i} className="aspect-square bg-gray-200 animate-pulse"></div>
-                ))
-                : posts.map((post, index) => (
-                    <a
-                        key={post.id}
-                        href={post.permalink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`group relative block aspect-square overflow-hidden bg-bg-warm transition-transform duration-500 hover:z-10 hover:scale-105 border-2 border-white shadow-lg ${index % 2 === 0 ? 'rotate-1' : '-rotate-1'
-                            } hover:rotate-0`}
-                        style={{
-                            transform: `rotate(${Math.random() * 4 - 2}deg)`
-                        }}
-                    >
-                        <img
-                            src={post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}
-                            alt={post.caption ? post.caption.slice(0, 100) : 'Instagram Post'}
-                            className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                            loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span className="font-heading text-white text-xl uppercase tracking-widest font-bold border-2 border-white px-4 py-2">
-                                View Post
-                            </span>
-                        </div>
-                    </a>
-                ))}
+        <div className="py-12 md:py-20">
+            {loading ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">
+                    {Array.from({ length: limit }).map((_, i) => (
+                        <div key={i} className="aspect-square bg-gray-200 animate-pulse"></div>
+                    ))}
+                </div>
+            ) : (
+                <>
+                    {/* Posts Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">
+                        {posts.map((post) => (
+                            <a
+                                key={post.id}
+                                href={post.permalink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative aspect-square overflow-hidden bg-gray-100 block"
+                            >
+                                <img
+                                    src={post.media_type === 'VIDEO' ? post.thumbnail_url || post.media_url : post.media_url}
+                                    alt={post.caption?.slice(0, 100) || 'Instagram Post'}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                                    <Instagram className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-0 group-hover:scale-110" size={32} />
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* View All Link */}
+                    <div className="mt-12 text-center">
+                        <a
+                            href="https://www.instagram.com/n13store/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 text-dark border border-dark/30 px-8 py-4 uppercase tracking-widest text-sm hover:bg-dark hover:text-white transition-all duration-300"
+                        >
+                            <Instagram size={20} />
+                            Alle Beiträge auf Instagram ansehen
+                        </a>
+                    </div>
+                </>
+            )}
         </div>
     );
 }

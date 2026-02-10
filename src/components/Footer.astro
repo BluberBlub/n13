@@ -10,13 +10,14 @@ import { Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
         >
             <!-- Brand -->
             <div class="lg:col-span-1">
-                <a
-                    href="/"
-                    class="font-heading text-3xl font-semibold text-white tracking-wider"
-                >
-                    N13
+                <a href="/" class="block mb-4" aria-label="N13 Home">
+                    <img
+                        src="/images/logo-n13.png"
+                        alt="N13 Logo"
+                        class="h-12 w-auto brightness-0 invert opacity-90"
+                    />
                 </a>
-                <p class="mt-4 text-sm leading-relaxed text-white/60">
+                <p class="text-sm leading-relaxed text-white/60">
                     Mode & Lifestyle im Herzen von Wangen im Allgäu. Individuell
                     wie Du.
                 </p>
@@ -161,18 +162,24 @@ import { Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
                     Navigation
                 </h3>
                 <ul class="space-y-3 text-sm">
-                    {
-                        siteConfig.nav.map((item) => (
-                            <li>
-                                <a
-                                    href={item.href}
-                                    class="hover:text-accent transition-colors duration-300"
-                                >
-                                    {item.label}
-                                </a>
-                            </li>
-                        ))
-                    }
+                    <li>
+                        <a
+                            href="#about"
+                            class="hover:text-accent transition-colors duration-300"
+                            >Über Uns</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#brands"
+                            class="hover:text-accent transition-colors duration-300"
+                            >Marken</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#contact"
+                            class="hover:text-accent transition-colors duration-300"
+                            >Kontakt</a>
+                    </li>
                     <li class="pt-3 border-t border-white/10">
                         <a
                             href="/impressum"
@@ -200,9 +207,6 @@ import { Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
             <p class="text-xs text-white/40">
                 © {new Date().getFullYear()}
                 {siteConfig.company.legalName}. Alle Rechte vorbehalten.
-            </p>
-            <p class="text-xs text-white/40">
-                Geschäftsführung: {siteConfig.company.management}
             </p>
         </div>
     </div>
