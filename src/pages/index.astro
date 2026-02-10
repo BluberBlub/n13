@@ -20,12 +20,12 @@ import ContactForm from "../components/ContactForm";
 		<!-- Background with image and stronger overlay -->
 		<div class="absolute inset-0">
 			<img
-				src="/images/hero-bg-faces.jpg"
-				alt="N13 Fashion Collage"
-				class="w-full h-full object-cover scale-105"
+				src="/images/hero-bg.jpg"
+				alt="N13 Store Interior"
+				class="w-full h-full object-cover scale-105 grayscale-[0.2]"
 			/>
 			<div
-				class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"
+				class="absolute inset-0 bg-gradient-to-b from-dark/60 via-[#c2b18c]/20 to-[#f5f5f4]/80 mix-blend-multiply"
 			>
 			</div>
 		</div>
@@ -33,32 +33,32 @@ import ContactForm from "../components/ContactForm";
 		<!-- Content with glassmorphism card -->
 		<div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
 			<div
-				class="bg-black/30 backdrop-blur-md border border-white/10 rounded-sm px-8 py-14 md:px-16 md:py-20 shadow-2xl"
+				class="bg-black/20 backdrop-blur-sm border border-white/10 rounded-sm px-8 py-14 md:px-16 md:py-20"
 			>
-				<!-- Tagline as H1 for SEO -->
-				<h1
-					class="inline-block text-accent text-xs md:text-sm tracking-[0.4em] uppercase font-semibold mb-8 border border-accent/30 px-5 py-2 drop-shadow-md"
+				<!-- Tagline -->
+				<span
+					class="inline-block text-accent text-xs md:text-sm tracking-[0.4em] uppercase font-semibold mb-8 border border-accent/30 px-5 py-2"
 				>
 					Mode & Lifestyle
-				</h1>
+				</span>
 
 				<!-- Logo -->
 				<img
 					src="/images/logo-n13.png"
 					alt="N13 – Mode & Lifestyle"
-					class="h-28 md:h-40 lg:h-48 w-auto mx-auto mb-2 brightness-0 invert drop-shadow-lg"
+					class="h-28 md:h-40 lg:h-48 w-auto mx-auto mb-2 brightness-0 invert"
 				/>
 
 				<!-- Accent divider -->
-				<div class="w-20 h-0.5 bg-accent mx-auto my-6 shadow-lg"></div>
+				<div class="w-20 h-0.5 bg-accent mx-auto my-6"></div>
 
 				<p
-					class="text-white text-xl md:text-2xl font-heading font-light tracking-wide mb-3 drop-shadow-md"
+					class="text-white text-xl md:text-2xl font-heading font-light tracking-wide mb-3"
 				>
 					Herzlich Willkommen
 				</p>
 				<p
-					class="text-white/90 text-base md:text-lg font-light max-w-lg mx-auto leading-relaxed drop-shadow-md"
+					class="text-white/70 text-base md:text-lg font-light max-w-lg mx-auto leading-relaxed"
 				>
 					Individuell wie Du – im Herzen von Wangen im Allgäu
 				</p>
@@ -100,26 +100,32 @@ import ContactForm from "../components/ContactForm";
 		</div>
 	</section>
 
-	<!-- About Section (Light V3) -->
-	<section id="about" class="py-24 lg:py-32 bg-bg text-dark">
+	<!-- About Section (Modern Layout with Depth) -->
+	<section id="about" class="py-24 lg:py-32 bg-bg text-dark overflow-hidden">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
 			<div
-				class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+				class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center"
 			>
-				<!-- Image Column -->
+				<!-- Image Column with Layered Depth -->
 				<div class="relative order-2 lg:order-1">
 					<div
-						class="aspect-[3/4] overflow-hidden relative z-10 shadow-xl"
+						class="aspect-[3/4] overflow-hidden relative z-10 shadow-2xl skew-y-1 transform transition-transform duration-700 hover:skew-y-0"
 					>
 						<img
 							src="/images/about-n13.jpg"
 							alt="Natalie & Nicola Endres im N13 Store"
-							class="w-full h-full object-cover"
+							class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
 						/>
 					</div>
-					<!-- Minimalist decorative element -->
+					<!-- Decorative Backdrop Text -->
 					<div
-						class="absolute -bottom-8 -left-8 w-64 h-64 bg-accent/10 -z-0 rounded-full hidden lg:block"
+						class="absolute -top-20 -left-20 text-[10rem] font-heading font-bold text-dark/5 select-none -z-0 leading-none whitespace-nowrap hidden lg:block"
+					>
+						N13
+					</div>
+					<!-- Minimalist Border Overlay -->
+					<div
+						class="absolute -bottom-8 -right-8 w-2/3 h-2/3 border-2 border-accent/20 -z-0 hidden lg:block"
 					>
 					</div>
 				</div>
@@ -127,19 +133,22 @@ import ContactForm from "../components/ContactForm";
 				<!-- Text Column -->
 				<div class="order-1 lg:order-2">
 					<span
-						class="text-accent text-xs tracking-[0.3em] uppercase font-bold"
+						class="text-accent text-xs tracking-[0.4em] uppercase font-bold pl-1"
 					>
 						Über Uns
 					</span>
 					<h2
-						class="font-heading text-4xl md:text-6xl font-medium text-dark mt-4 mb-8 leading-tight"
+						class="font-heading text-5xl md:text-7xl font-medium text-dark mt-6 mb-10 leading-none"
 					>
-						Mehr als nur <br /> ein Modegeschäft
+						Mehr als nur <br />
+						<span class="text-text-secondary">ein Store.</span>
 					</h2>
 					<div
-						class="space-y-6 text-text-secondary font-light text-lg"
+						class="space-y-8 text-text-secondary font-light text-lg leading-relaxed"
 					>
-						<p>
+						<p
+							class="first-letter:text-5xl first-letter:font-heading first-letter:text-accent first-letter:float-left first-letter:mr-3 first-letter:mt-[-0.2em]"
+						>
 							Im Herzen von Wangen im Allgäu haben wir, Natalie
 							und Nicola Endres, uns einen Traum erfüllt. Das N13
 							ist unsere Vision von modernem Shopping –
@@ -255,28 +264,21 @@ import ContactForm from "../components/ContactForm";
 		</div>
 	</section>
 
-	<!-- Visit Us CTA Banner -->
+	<!-- Visit Us CTA Banner (Lightened) -->
 	<section
-		class="py-20 bg-dark text-white text-center relative overflow-hidden"
+		class="py-20 bg-bg-warm text-dark text-center relative overflow-hidden"
 	>
-		<div class="absolute inset-0 opacity-20">
-			<img
-				src="/images/hero-bg.jpg"
-				class="w-full h-full object-cover"
-				alt="Store Background"
-			/>
-		</div>
 		<div class="relative z-10 max-w-3xl mx-auto px-6">
 			<h2 class="font-heading text-4xl md:text-5xl mb-6">
 				Komm vorbei & lass dich beraten
 			</h2>
-			<p class="text-white/80 text-lg mb-8 font-light">
+			<p class="text-text-secondary text-lg mb-8 font-light">
 				Wir freuen uns darauf, dich persönlich im N13 begrüßen zu
 				dürfen. Erlebe die Kollektionen hautnah.
 			</p>
 			<a
 				href="#contact"
-				class="inline-block border border-white px-10 py-4 text-sm font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-dark transition-all duration-300"
+				class="inline-block px-10 py-5 bg-dark text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-accent transition-all duration-500 shadow-xl hover:shadow-2xl hover:-translate-y-1"
 			>
 				Zum Store
 			</a>

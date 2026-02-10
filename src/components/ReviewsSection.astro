@@ -1,20 +1,25 @@
----
+<section class="py-24 lg:py-32 bg-bg-warm text-dark overflow-hidden relative">
+    <!-- Background element -->
+    <div
+        class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dark/10 to-transparent"
+    >
+    </div>
 
----
-
-<section
-    class="py-24 lg:py-32 bg-bg-warm text-dark overflow-hidden"
-    style="clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);"
->
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2
-                class="font-heading text-4xl md:text-6xl font-medium uppercase tracking-tight text-dark mb-4"
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-24">
+            <span
+                class="text-accent text-xs tracking-[0.4em] uppercase font-bold block mb-4"
+                >Community</span
             >
-                Das sagen unsere Kunden
+            <h2
+                class="font-heading text-4xl md:text-6xl font-medium uppercase tracking-tight text-dark mb-6"
+            >
+                Das sagen <br /><span class="text-text-muted"
+                    >unsere Kunden</span
+                >
             </h2>
-            <div class="flex items-center justify-center gap-2">
-                <span class="text-accent text-xl font-bold">4.8</span>
+            <div class="flex items-center justify-center gap-3 mt-8">
+                <span class="text-dark font-heading text-2xl">4.8</span>
                 <div
                     class="flex text-accent"
                     role="img"
@@ -36,22 +41,25 @@
                         ))
                     }
                 </div>
-                <span class="text-text-muted text-sm ml-2">auf Google</span>
+                <span
+                    class="text-text-muted text-sm tracking-widest uppercase ml-2 border-l border-border pl-3"
+                    >Google Reviews</span
+                >
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             <!-- Review 1 -->
             <div
-                class="bg-white p-8 shadow-sm border border-border hover:border-accent transition-colors duration-300 relative group"
+                class="bg-white p-10 md:p-12 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 relative group hover:-translate-y-2"
             >
                 <div
-                    class="absolute -top-4 -left-4 text-6xl text-accent/20 font-heading"
+                    class="absolute -top-6 -right-6 text-[8rem] text-accent/5 font-heading leading-none select-none transition-colors duration-500 group-hover:text-accent/10"
                 >
-                    &bdquo;
+                    &rdquo;
                 </div>
                 <div
-                    class="flex text-accent mb-4"
+                    class="flex text-accent mb-6"
                     role="img"
                     aria-label="5 von 5 Sternen"
                 >
@@ -59,8 +67,8 @@
                         Array.from({ length: 5 }).map(() => (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
+                                width="14"
+                                height="14"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 stroke="none"
@@ -72,21 +80,27 @@
                     }
                 </div>
                 <p
-                    class="text-text-secondary mb-6 italic relative z-10 font-light"
+                    class="text-text-secondary text-lg font-light leading-relaxed mb-8 relative z-10"
                 >
-                    Ein unglaublich toller Laden mit einer super Auswahl! Hier
+                    "Ein unglaublich toller Laden mit einer super Auswahl! Hier
                     findet man immer etwas Besonderes. Die Beratung ist herzlich
-                    und ehrlich.
+                    und ehrlich."
                 </p>
-                <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center gap-4 pt-6 border-t border-border/50"
+                >
                     <div
-                        class="w-10 h-10 bg-bg-warm rounded-full flex items-center justify-center font-bold text-accent border border-border"
+                        class="w-12 h-12 bg-dark text-white rounded-full flex items-center justify-center font-heading text-lg"
                     >
                         S
                     </div>
                     <div>
-                        <span class="block font-bold text-dark">Sabine M.</span>
-                        <span class="text-xs text-text-muted">vor 2 Wochen</span
+                        <span
+                            class="block font-bold text-dark text-sm uppercase tracking-wide"
+                            >Sabine M.</span
+                        >
+                        <span class="text-xs text-text-muted block mt-1"
+                            >vor 2 Wochen</span
                         >
                     </div>
                 </div>
@@ -94,15 +108,15 @@
 
             <!-- Review 2 -->
             <div
-                class="bg-white p-8 shadow-sm border border-border hover:border-accent transition-colors duration-300 relative group"
+                class="bg-white p-10 md:p-12 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 relative group hover:-translate-y-2 translate-y-0 md:translate-y-8"
             >
                 <div
-                    class="absolute -top-4 -left-4 text-6xl text-accent/20 font-heading"
+                    class="absolute -top-6 -right-6 text-[8rem] text-accent/5 font-heading leading-none select-none transition-colors duration-500 group-hover:text-accent/10"
                 >
-                    &bdquo;
+                    &rdquo;
                 </div>
                 <div
-                    class="flex text-accent mb-4"
+                    class="flex text-accent mb-6"
                     role="img"
                     aria-label="5 von 5 Sternen"
                 >
@@ -110,8 +124,8 @@
                         Array.from({ length: 5 }).map(() => (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
+                                width="14"
+                                height="14"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 stroke="none"
@@ -123,37 +137,43 @@
                     }
                 </div>
                 <p
-                    class="text-text-secondary mb-6 italic relative z-10 font-light"
+                    class="text-text-secondary text-lg font-light leading-relaxed mb-8 relative z-10"
                 >
-                    Das N13 ist mein absoluter Lieblingsladen in Wangen. Coole
+                    "Das N13 ist mein absoluter Lieblingsladen in Wangen. Coole
                     Marken, entspannte Atmosphäre und immer ein leckerer
-                    Espresso!
+                    Espresso!"
                 </p>
-                <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center gap-4 pt-6 border-t border-border/50"
+                >
                     <div
-                        class="w-10 h-10 bg-bg-warm rounded-full flex items-center justify-center font-bold text-accent border border-border"
+                        class="w-12 h-12 bg-dark text-white rounded-full flex items-center justify-center font-heading text-lg"
                     >
                         M
                     </div>
                     <div>
-                        <span class="block font-bold text-dark">Michael K.</span
+                        <span
+                            class="block font-bold text-dark text-sm uppercase tracking-wide"
+                            >Michael K.</span
                         >
-                        <span class="text-xs text-text-muted">vor 1 Monat</span>
+                        <span class="text-xs text-text-muted block mt-1"
+                            >vor 1 Monat</span
+                        >
                     </div>
                 </div>
             </div>
 
             <!-- Review 3 -->
             <div
-                class="bg-white p-8 shadow-sm border border-border hover:border-accent transition-colors duration-300 relative group"
+                class="bg-white p-10 md:p-12 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 relative group hover:-translate-y-2"
             >
                 <div
-                    class="absolute -top-4 -left-4 text-6xl text-accent/20 font-heading"
+                    class="absolute -top-6 -right-6 text-[8rem] text-accent/5 font-heading leading-none select-none transition-colors duration-500 group-hover:text-accent/10"
                 >
-                    &bdquo;
+                    &rdquo;
                 </div>
                 <div
-                    class="flex text-accent mb-4"
+                    class="flex text-accent mb-6"
                     role="img"
                     aria-label="5 von 5 Sternen"
                 >
@@ -161,8 +181,8 @@
                         Array.from({ length: 5 }).map(() => (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
+                                width="14"
+                                height="14"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 stroke="none"
@@ -174,20 +194,25 @@
                     }
                 </div>
                 <p
-                    class="text-text-secondary mb-6 italic relative z-10 font-light"
+                    class="text-text-secondary text-lg font-light leading-relaxed mb-8 relative z-10"
                 >
-                    Tolle Mode, die man nicht überall sieht. Natalie und Nicola
-                    haben einfach Geschmack. Komme immer wieder gerne!
+                    "Tolle Mode, die man nicht überall sieht. Natalie und Nicola
+                    haben einfach Geschmack. Komme immer wieder gerne!"
                 </p>
-                <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center gap-4 pt-6 border-t border-border/50"
+                >
                     <div
-                        class="w-10 h-10 bg-bg-warm rounded-full flex items-center justify-center font-bold text-accent border border-border"
+                        class="w-12 h-12 bg-dark text-white rounded-full flex items-center justify-center font-heading text-lg"
                     >
                         A
                     </div>
                     <div>
-                        <span class="block font-bold text-dark">Anna L.</span>
-                        <span class="text-xs text-text-muted"
+                        <span
+                            class="block font-bold text-dark text-sm uppercase tracking-wide"
+                            >Anna L.</span
+                        >
+                        <span class="text-xs text-text-muted block mt-1"
                             >vor 3 Monaten</span
                         >
                     </div>
@@ -195,12 +220,12 @@
             </div>
         </div>
 
-        <div class="mt-16 text-center">
+        <div class="mt-20 text-center">
             <a
                 href="https://www.google.com/search?sa=X&sca_esv=85eca064802d3472&q=N13+Rezensionen&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NDKwNDAxM7MwMDY3NDMxNDIx38DI-IqR38_QWCEotSo1rzgzPy81bxEruggALT4epD4AAAA&rldimm=1209046680371641247&tbm=lcl&hl=de-SE&ved=2ahUKEwjA2eqnhs-SAxWIFhAIHUaTImgQ9fQKegQIRRAG&biw=1277&bih=1278&dpr=1.5"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-block px-10 py-4 border border-dark text-dark font-bold tracking-widest uppercase hover:bg-dark hover:text-white transition-all duration-300"
+                class="inline-block px-10 py-5 bg-white border border-border text-dark text-xs font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white hover:border-dark transition-all duration-300 shadow-lg hover:shadow-xl"
             >
                 Bewertung schreiben
             </a>

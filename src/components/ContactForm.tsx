@@ -96,28 +96,28 @@ export default function ContactForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} noValidate className="space-y-6">
+        <form onSubmit={handleSubmit} noValidate className="space-y-8">
             {/* Name */}
-            <div>
-                <label
-                    htmlFor="contact-name"
-                    className="block text-sm font-medium text-dark mb-2"
-                >
-                    Name <span className="text-error">*</span>
-                </label>
+            <div className="relative">
                 <input
                     id="contact-name"
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Dein vollständiger Name"
+                    placeholder=" "
                     aria-required="true"
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? 'name-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.name ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-4 bg-white border-b-2 text-dark placeholder:text-transparent focus:outline-none focus:border-dark transition-all duration-300 peer ${errors.name ? 'border-error' : 'border-border'
                         }`}
                 />
+                <label
+                    htmlFor="contact-name"
+                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                >
+                    Vollständiger Name
+                </label>
                 {errors.name && (
                     <p id="name-error" role="alert" className="mt-1.5 text-xs text-error">
                         {errors.name}
@@ -126,26 +126,26 @@ export default function ContactForm() {
             </div>
 
             {/* Email */}
-            <div>
-                <label
-                    htmlFor="contact-email"
-                    className="block text-sm font-medium text-dark mb-2"
-                >
-                    E-Mail <span className="text-error">*</span>
-                </label>
+            <div className="relative">
                 <input
                     id="contact-email"
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="deine@email.de"
+                    placeholder=" "
                     aria-required="true"
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? 'email-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.email ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-4 bg-white border-b-2 text-dark placeholder:text-transparent focus:outline-none focus:border-dark transition-all duration-300 peer ${errors.email ? 'border-error' : 'border-border'
                         }`}
                 />
+                <label
+                    htmlFor="contact-email"
+                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                >
+                    E-Mail-Adresse
+                </label>
                 {errors.email && (
                     <p id="email-error" role="alert" className="mt-1.5 text-xs text-error">
                         {errors.email}
@@ -154,26 +154,26 @@ export default function ContactForm() {
             </div>
 
             {/* Message */}
-            <div>
-                <label
-                    htmlFor="contact-message"
-                    className="block text-sm font-medium text-dark mb-2"
-                >
-                    Nachricht <span className="text-error">*</span>
-                </label>
+            <div className="relative">
                 <textarea
                     id="contact-message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Deine Nachricht an uns..."
+                    placeholder=" "
                     rows={5}
                     aria-required="true"
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? 'message-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 resize-y ${errors.message ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-4 bg-white border-b-2 text-dark placeholder:text-transparent focus:outline-none focus:border-dark transition-all duration-300 resize-y min-h-[120px] peer ${errors.message ? 'border-error' : 'border-border'
                         }`}
                 />
+                <label
+                    htmlFor="contact-message"
+                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                >
+                    Deine Nachricht...
+                </label>
                 {errors.message && (
                     <p id="message-error" role="alert" className="mt-1.5 text-xs text-error">
                         {errors.message}
@@ -191,13 +191,14 @@ export default function ContactForm() {
                     className="mt-1 w-4 h-4 accent-accent"
                     aria-required="true"
                 />
-                <label htmlFor="contact-consent" className="text-xs text-text-secondary leading-relaxed">
+                <label htmlFor="contact-consent" className="text-xs text-text-secondary leading-relaxed cursor-pointer select-none">
                     Ich stimme zu, dass meine Angaben zur Erstellung der E-Mail verwendet werden.
                     Es werden keine Daten auf einem Server gespeichert. Weitere Informationen finden Sie in der{' '}
                     <a
                         href="/datenschutzerklaerung"
-                        className="text-accent hover:underline"
+                        className="text-accent hover:underline relative z-10"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Datenschutzerklärung
                     </a>.
@@ -208,10 +209,12 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={!consent}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-dark text-white font-medium hover:bg-dark-soft disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="w-full relative overflow-hidden group flex items-center justify-center gap-3 px-8 py-5 bg-white border border-dark text-dark font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 shadow-xl"
             >
-                <Send size={18} />
-                Nachricht senden
+                <span className="relative z-10 flex items-center gap-2">
+                    <Send size={16} />
+                    Nachricht senden
+                </span>
             </button>
         </form>
     );

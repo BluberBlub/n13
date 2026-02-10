@@ -16,7 +16,7 @@ const { brand } = Astro.props as { brand: Brand };
 <BaseLayout title={brand.name} description={brand.shortDescription}>
     <!-- Hero -->
     <section
-        class="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-dark overflow-hidden"
+        class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden"
     >
         {
             brand.image && (
@@ -24,70 +24,69 @@ const { brand } = Astro.props as { brand: Brand };
                     <img
                         src={brand.image}
                         alt={brand.name}
-                        class="w-full h-full object-cover opacity-50"
+                        class="w-full h-full object-cover animate-kenburns"
                     />
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
+                    <div class="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/40 to-white" />
                 </div>
             )
         }
 
-        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div
+            class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center mt-12"
+        >
             <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
                 {
                     brand.categories.map((cat: string) => (
-                        <span class="text-xs px-3 py-1 bg-white/20 backdrop-blur-sm text-white border border-white/20 rounded-full uppercase tracking-wider">
+                        <span class="text-xs px-3 py-1 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full uppercase tracking-wider">
                             {cat}
                         </span>
                     ))
                 }
             </div>
             <h1
-                class="font-heading text-5xl md:text-7xl font-bold text-white tracking-wider mb-6 drop-shadow-lg"
+                class="font-heading text-6xl md:text-8xl font-bold text-white tracking-tight mb-4 drop-shadow-2xl"
             >
                 {brand.name}
             </h1>
-            <p
-                class="text-white/80 text-xl font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md"
-            >
-                {brand.shortDescription}
-            </p>
         </div>
     </section>
 
     <!-- Content -->
-    <section class="py-24 bg-white">
+    <section
+        class="py-24 bg-white relative z-10 -mt-12 rounded-t-[3rem] shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.1)]"
+    >
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
             <div
-                class="prose prose-lg prose-p:text-text-secondary prose-headings:font-heading prose-headings:font-light mx-auto"
+                class="prose prose-lg prose-p:text-text-secondary prose-headings:font-heading prose-headings:font-light mx-auto leading-relaxed"
             >
-                <p class="whitespace-pre-line leading-relaxed text-lg">
+                <p class="whitespace-pre-line text-lg md:text-xl font-light">
                     {brand.description}
                 </p>
             </div>
 
             <div
-                class="mt-20 p-10 bg-bg-warm rounded-sm text-center border border-border"
+                class="mt-20 p-10 bg-bg-warm rounded-sm text-center border border-border/50 shadow-inner"
             >
-                <h3 class="font-heading text-2xl text-dark mb-4">
-                    Entdecke {brand.name} im N13
+                <h3 class="font-heading text-3xl text-dark mb-4">
+                    Entdecke <span class="text-accent">{brand.name}</span> im N13
                 </h3>
-                <p class="text-text-secondary mb-8 font-light">
+                <p class="text-text-secondary mb-10 font-light text-lg">
                     Komm vorbei, fühl die Stoffe und probier deine Favoriten an.<br
                     />
                     Wir beraten dich gerne persönlich.
                 </p>
                 <div
-                    class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                    class="flex flex-col sm:flex-row items-center justify-center gap-6"
                 >
                     <a
                         href="/#contact"
-                        class="px-8 py-3 bg-dark text-white text-sm font-bold tracking-[0.2em] uppercase hover:bg-accent transition-all duration-300"
+                        class="px-10 py-5 bg-white text-dark text-xs font-bold tracking-[0.2em] uppercase hover:bg-accent hover:text-white transition-all duration-500 shadow-lg"
                     >
                         Zum Store
                     </a>
                     <a
                         href="/#brands"
-                        class="px-8 py-3 border border-dark text-dark text-sm font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white transition-all duration-300"
+                        class="px-10 py-5 border border-dark text-dark text-xs font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white transition-all duration-500"
                     >
                         Zurück zur Übersicht
                     </a>

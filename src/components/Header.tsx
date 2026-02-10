@@ -95,7 +95,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                             src="/images/logo-n13.png"
                             alt="N13 Logo"
                             className={clsx(
-                                "h-16 w-auto transition-all duration-300 filter drop-shadow-md",
+                                "h-12 w-auto transition-all duration-300",
                                 scrolled ? "brightness-0" : "brightness-0 invert"
                             )}
                         />
@@ -108,23 +108,15 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                                 key={item.href}
                                 href={item.href}
                                 className={clsx(
-                                    'text-sm font-bold tracking-[0.15em] uppercase transition-all duration-300',
-                                    item.href === '/#contact'
-                                        ? (scrolled
-                                            ? 'border border-dark px-6 py-2 hover:bg-dark hover:text-white text-dark'
-                                            : 'border border-white/90 px-6 py-2 hover:bg-white hover:text-dark text-white')
-                                        : (
-                                            isActive(item.href)
-                                                ? (scrolled
-                                                    ? 'text-accent border-b-2 border-accent'
-                                                    : 'text-white border-b-2 border-accent')
-                                                : clsx(
-                                                    'border-b-2 border-transparent',
-                                                    scrolled
-                                                        ? 'text-dark hover:text-accent'
-                                                        : 'text-white/95 hover:text-white'
-                                                )
-                                        )
+                                    'text-sm font-bold tracking-[0.15em] uppercase transition-all duration-300 border-b-2',
+                                    isActive(item.href)
+                                        ? 'border-accent text-accent'
+                                        : 'border-transparent',
+                                    !isActive(item.href) && (
+                                        scrolled
+                                            ? 'text-dark hover:text-accent'
+                                            : 'text-white/90 hover:text-white'
+                                    )
                                 )}
                             >
                                 {item.label}
@@ -164,7 +156,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             {/* Mobile Menu Overlay */}
             <div
                 className={clsx(
-                    'fixed inset-0 bg-white/95 backdrop-blur-lg transition-all duration-500 lg:hidden flex flex-col items-center justify-center z-40',
+                    'fixed inset-0 bg-dark/95 backdrop-blur-lg transition-all duration-500 lg:hidden flex flex-col items-center justify-center z-40',
                     isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                 )}
             >
@@ -175,7 +167,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                             href={item.href}
                             className={clsx(
                                 'text-2xl font-heading font-bold tracking-widest uppercase hover:text-accent transition-colors duration-300',
-                                isActive(item.href) ? 'text-accent' : 'text-dark'
+                                isActive(item.href) ? 'text-accent' : 'text-white'
                             )}
                             onClick={() => setIsOpen(false)}
                         >
@@ -186,7 +178,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                         href="https://www.instagram.com/n13store/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-dark hover:text-accent transition-colors duration-300 mt-4"
+                        className="text-white hover:text-accent transition-colors duration-300 mt-4"
                         aria-label="Instagram"
                     >
                         <Instagram size={28} />
