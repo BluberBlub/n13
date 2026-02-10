@@ -14,17 +14,64 @@ const navItems: NavItem[] = [
     { label: 'Kontakt', href: '/kontakt' },
 ];
 
-export default function Header() {
+interface HeaderProps {
+    currentPath?: string;
+}
+
+export default function Header({ currentPath = '/' }: HeaderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    // Helper to check active state
+    const isActive = (href: string) => {
+        // If we represent a homepage section and we are currently "spying" it
+        if (currentPath === '/' && activeSection === href) return true;
+
+        // Standard checks
+        if (href === '/' && currentPath === '/' && activeSection === '/') return true;
+        if (href !== '/' && currentPath.startsWith(href)) return true;
+
+        return false;
+    };
+
+    const [activeSection, setActiveSection] = useState(currentPath);
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
+
+            // ScrollSpy logic only on homepage
+            if (currentPath === '/') {
+                const sections = [
+                    { id: 'home', href: '/' },
+                    { id: 'brands', href: '/modewelt' },
+                    { id: 'welcome', href: '/das-sind-wir' },
+                    { id: 'contact', href: '/kontakt' }
+                ];
+
+                // Find the section that occupies the most viewport or is at the top
+                let current = '/';
+
+                for (const section of sections) {
+                    const element = document.getElementById(section.id);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        // If section top is within the upper half of screen or close to top
+                        if (rect.top <= 200 && rect.bottom >= 200) {
+                            current = section.href;
+                        }
+                    }
+                }
+                setActiveSection(current);
+            }
         };
+
         window.addEventListener('scroll', handleScroll, { passive: true });
+        // Initial check
+        handleScroll();
+
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [currentPath]);
 
     useEffect(() => {
         if (isOpen) {
@@ -52,7 +99,7 @@ export default function Header() {
                     <a
                         href="/"
                         className={clsx(
-                            'font-heading text-3xl font-semibold tracking-wider transition-colors duration-300',
+                            'font-heading text-3xl font-bold tracking-wider transition-colors duration-300',
                             scrolled ? 'text-dark' : 'text-white'
                         )}
                         aria-label="N13 Home"
@@ -67,8 +114,9 @@ export default function Header() {
                                 key={item.href}
                                 href={item.href}
                                 className={clsx(
-                                    'text-sm font-medium tracking-widest uppercase transition-colors duration-300 hover:text-accent',
-                                    scrolled ? 'text-text' : 'text-white/90'
+                                    'text-sm font-bold tracking-widest uppercase transition-colors duration-300 hover:text-accent border-b-2',
+                                    isActive(item.href) ? 'border-accent text-accent' : 'border-transparent',
+                                    !isActive(item.href) && (scrolled ? 'text-dark' : 'text-white/90')
                                 )}
                             >
                                 {item.label}
@@ -80,7 +128,7 @@ export default function Header() {
                             rel="noopener noreferrer"
                             className={clsx(
                                 'transition-colors duration-300 hover:text-accent',
-                                scrolled ? 'text-text' : 'text-white/90'
+                                scrolled ? 'text-dark' : 'text-white/90'
                             )}
                             aria-label="Instagram"
                         >
@@ -115,7 +163,10 @@ export default function Header() {
                         <a
                             key={item.href}
                             href={item.href}
-                            className="text-white text-2xl font-heading font-light tracking-widest uppercase hover:text-accent transition-colors duration-300"
+                            className={clsx(
+                                'text-2xl font-heading font-bold tracking-widest uppercase hover:text-accent transition-colors duration-300',
+                                isActive(item.href) ? 'text-accent' : 'text-white'
+                            )}
                             onClick={() => setIsOpen(false)}
                         >
                             {item.label}

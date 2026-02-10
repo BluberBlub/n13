@@ -134,7 +134,7 @@ export default function ContactForm() {
                     aria-required="true"
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? 'name-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border rounded-lg text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.name ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.name ? 'border-error' : 'border-border'
                         }`}
                 />
                 {errors.name && (
@@ -162,7 +162,7 @@ export default function ContactForm() {
                     aria-required="true"
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? 'email-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border rounded-lg text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.email ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 ${errors.email ? 'border-error' : 'border-border'
                         }`}
                 />
                 {errors.email && (
@@ -190,7 +190,7 @@ export default function ContactForm() {
                     aria-required="true"
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? 'message-error' : undefined}
-                    className={`w-full px-4 py-3 bg-bg border rounded-lg text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 resize-y ${errors.message ? 'border-error' : 'border-border'
+                    className={`w-full px-4 py-3 bg-bg border text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all duration-300 resize-y ${errors.message ? 'border-error' : 'border-border'
                         }`}
                 />
                 {errors.message && (
@@ -227,7 +227,7 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={status === 'submitting' || !consent}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-dark text-white font-medium rounded-lg hover:bg-dark-soft disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-dark text-white font-medium hover:bg-dark-soft disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
             >
                 {status === 'submitting' ? (
                     <>

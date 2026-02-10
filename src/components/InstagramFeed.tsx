@@ -55,59 +55,50 @@ export default function InstagramFeed({ accessToken, limit = 4 }: InstagramFeedP
     // Fallback content if no posts (error or no token)
     if (!loading && (error || posts.length === 0)) {
         return (
-            <div className="text-center p-8 bg-surface rounded-xl border border-border-light">
-                <p className="text-text-secondary mb-4">
-                    Folge uns auf Instagram für die neuesten Updates!
+            <div className="text-center p-12 border-2 border-dashed border-dark/20">
+                <p className="font-heading text-2xl text-dark mb-4 uppercase">
+                    Folge dem Vibe
                 </p>
                 <a
                     href="https://www.instagram.com/n13store/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-accent font-medium hover:text-accent-dark transition-colors"
+                    className="inline-block px-8 py-3 bg-dark text-white font-bold tracking-widest uppercase hover:bg-accent transition-colors"
                 >
-                    @n13store ansehen →
+                    @n13store
                 </a>
             </div>
         );
     }
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 p-4">
             {loading
                 ? Array.from({ length: limit }).map((_, i) => (
-                    <div key={i} className="aspect-square bg-bg-warm animate-pulse rounded-lg"></div>
+                    <div key={i} className="aspect-square bg-gray-200 animate-pulse"></div>
                 ))
-                : posts.map((post) => (
+                : posts.map((post, index) => (
                     <a
                         key={post.id}
                         href={post.permalink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative block aspect-square overflow-hidden rounded-lg bg-bg-warm"
+                        className={`group relative block aspect-square overflow-hidden bg-bg-warm transition-transform duration-500 hover:z-10 hover:scale-105 border-2 border-white shadow-lg ${index % 2 === 0 ? 'rotate-1' : '-rotate-1'
+                            } hover:rotate-0`}
+                        style={{
+                            transform: `rotate(${Math.random() * 4 - 2}deg)`
+                        }}
                     >
                         <img
                             src={post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}
                             alt={post.caption ? post.caption.slice(0, 100) : 'Instagram Post'}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                             loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-white"
-                            >
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                            </svg>
+                        <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span className="font-heading text-white text-xl uppercase tracking-widest font-bold border-2 border-white px-4 py-2">
+                                View Post
+                            </span>
                         </div>
                     </a>
                 ))}
