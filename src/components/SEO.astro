@@ -2,32 +2,50 @@
 interface Props {
     title: string;
     description: string;
+    ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 
 import { siteConfig } from "../data/site";
 
-const siteUrl = siteConfig.url;
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
+const socialImageURL = new URL(
+    ogImage || siteConfig.ogImage || "/images/about-us-v2.jpg",
+    siteConfig.url,
+);
 const fullTitle = `${title} – ${siteConfig.name}`;
 ---
 
-<title>{fullTitle}</title>
-<meta name="description" content={description} />
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/png" href="/images/logo-n13.png" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Open Graph -->
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={siteUrl} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
 <meta property="og:site_name" content={siteConfig.name} />
 <meta property="og:locale" content="de_DE" />
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={socialImageURL} />
 
 <!-- Structured Data: LocalBusiness -->
 <script
@@ -40,12 +58,18 @@ const fullTitle = `${title} – ${siteConfig.name}`;
         url: siteConfig.url,
         telephone: siteConfig.company.phone,
         email: siteConfig.company.email,
+        image: socialImageURL,
         address: {
             "@type": "PostalAddress",
             streetAddress: siteConfig.company.address,
             addressLocality: siteConfig.company.city,
             postalCode: siteConfig.company.zip,
             addressCountry: "DE",
+        },
+        geo: {
+            "@type": "GeoCoordinates",
+            latitude: 47.68753,
+            longitude: 9.83465,
         },
         openingHoursSpecification: [
             {

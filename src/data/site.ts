@@ -50,12 +50,12 @@ export const siteConfig: SiteConfig = {
     },
     nav: [
         { label: 'Home', href: '/' },
-        { label: 'Unsere Brands', href: '/modewelt' },
-        { label: 'Das sind wir', href: '/das-sind-wir' },
-        { label: 'Kontakt', href: '/kontakt' },
+        { label: 'Über uns', href: '/#about' },
+        { label: 'Unsere Brands', href: '/#brands' },
+        { label: 'Kontakt', href: '/#contact' },
     ],
     footerNav: [
-        { label: 'Kontakt', href: '/kontakt' },
+        { label: 'Kontakt', href: '/#contact' },
         { label: 'Datenschutz', href: '/datenschutzerklaerung' },
         { label: 'Impressum', href: '/impressum' },
     ],

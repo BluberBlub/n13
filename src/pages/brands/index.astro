@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { brands } from "../../data/brands";
 
-const title = "Unsere Marken – N13";
+const title = "Unsere Marken";
 const description =
     "Entdecke unsere kuratierte Auswahl an Mode- und Lifestyle-Marken im N13. Von Desoto bis A Beautiful Story.";
 ---
@@ -43,6 +43,7 @@ const description =
                                     <img
                                         src={brand.image}
                                         alt={brand.name}
+                                        loading="lazy"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 ) : (

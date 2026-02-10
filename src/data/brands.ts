@@ -96,7 +96,7 @@ export const brands: Brand[] = [
         shortDescription: "Trendorientierte Mode mit Fokus auf Qualität",
         description: "MAGS steht für schicke, trendbewusste Mode, die keine Kompromisse bei der Qualität eingeht. 'Trend, Fit, and Quality' ist das Motto. Entdecke einzigartige Designs und Schnitte, die deine Persönlichkeit unterstreichen.",
         categories: ["Damen", "Fashion", "Trends"],
-        // image: '/images/brand-mags.jpg',
+        image: '/images/brand-mags.jpg',
     },
     {
         name: "A Beautiful Story",
@@ -104,7 +104,7 @@ export const brands: Brand[] = [
         shortDescription: "Handgefertigter Schmuck mit Bedeutung",
         description: "Schmuckstücke, die Glück bringen. A Beautiful Story fertigt fairen Handelsschmuck in Nepal und Indien. Jedes Stück hat eine Bedeutung und erzählt eine Geschichte. 'Lucky tools' für dein tägliches Leben.",
         categories: ["Schmuck", "Accessoires", "Fair Trade"],
-        // image: '/images/brand-a-beautiful-story.jpg',
+        image: '/images/brand-a-beautiful-story.jpg',
     },
     {
         name: "Cereria Molla",
@@ -112,7 +112,7 @@ export const brands: Brand[] = [
         shortDescription: "Luxuriöse Duftkerzen aus Spanien",
         description: "Seit 1899 fertigt Cereria Molla handgegossene Duftkerzen aus besten Rohstoffen. Erlebe mediterrane Düfte, die dein Zuhause in eine Wohlfühloase verwandeln. Natürlich, elegant und zeitlos.",
         categories: ["Lifestyle", "Duftkerzen", "Home"],
-        // image: '/images/brand-cereria-molla.jpg',
+        image: '/images/brand-cereria-molla.jpg',
     },
     {
         name: "KKNEKKI",
@@ -120,7 +120,7 @@ export const brands: Brand[] = [
         shortDescription: "Die weltbesten Haargummis",
         description: "KKNEKKI Haargummis sind bekannt für ihre außergewöhnliche Qualität und Farbenvielfalt. Sie sind sanft zum Haar, extrem haltbar und sehen auch als Armband toll aus. Ein Must-Have Accessoire.",
         categories: ["Accessoires", "Haar", "Lifestyle"],
-        // image: '/images/brand-kknekki.jpg',
+        image: '/images/brand-kknekki.jpg',
     },
     {
         name: "Ammann",
@@ -128,7 +128,7 @@ export const brands: Brand[] = [
         shortDescription: "Traditionelle Wäsche von höchster Qualität",
         description: "Seit 1886 steht Ammann für hochwertige Tag- und Nachtwäsche. Klassisches Design trifft auf höchsten Tragekomfort und perfekte Passform. Wäsche zum Wohlfühlen, Tag und Nacht.",
         categories: ["Wäsche", "Herren", "Damen"],
-        // image: '/images/brand-ammann.jpg',
+        image: '/images/brand-ammann.jpg',
     },
     {
         name: "Kruut",
@@ -136,7 +136,7 @@ export const brands: Brand[] = [
         shortDescription: "Moderne Wildkräuter-Elixiere",
         description: "Kruut bringt die Kraft der heimischen Wildkräuter zurück in deinen Alltag. Oxymels und Tinkturen nach traditionellen Rezepten, hergestellt aus 100% bio-zertifizierten Zutaten. Natürlich, wild und kraftvoll.",
         categories: ["Lifestyle", "Gesundheit", "Kräuter"],
-        // image: '/images/brand-kruut.jpg',
+        image: '/images/brand-kruut.jpg',
     },
     {
         name: "Hopery",
@@ -144,7 +144,7 @@ export const brands: Brand[] = [
         shortDescription: "Vegane Naturkosmetik ohne Palmöl",
         description: "Hopery bietet hochwertige, vegane Naturkosmetik, die gut für dich und die Umwelt ist. 100% ohne Palmöl, um den Lebensraum der Orang-Utans zu schützen. Handgefertigt mit Liebe und Tradition.",
         categories: ["Kosmetik", "Vegan", "Nachhaltigkeit"],
-        // image: '/images/brand-hopery.jpg',
+        image: '/images/brand-hopery.jpg',
     },
     {
         name: "Kunstwerkstatt",
@@ -152,7 +152,7 @@ export const brands: Brand[] = [
         shortDescription: "Einzigartige Kunst & Handwerk",
         description: "Kreative Kunstwerke und handgefertigte Unikate. Die Kunstwerkstatt bietet besondere Stücke, die Geschichten erzählen und inspirieren. Entdecke Kunst, die berührt.",
         categories: ["Kunst", "Lifestyle", "Deko"],
-        // image: '/images/brand-kunstwerkstatt.jpg',
+        image: '/images/brand-kunstwerkstatt.jpg',
     },
     {
         name: "Rohstoff",
@@ -160,6 +160,6 @@ export const brands: Brand[] = [
         shortDescription: "Bio-Säfte und Erfrischungen",
         description: "Purer Genuss aus besten Bio-Zutaten. Rohstoff steht für Säfte und Erfrischungen, die natürlich schmecken und gut tun. Ohne künstliche Zusätze, einfach purer Geschmack.",
         categories: ["Food", "Bio", "Lifestyle"],
-        // image: '/images/brand-rohstoff.jpg',
+        image: '/images/brand-rohstoff.jpg',
     },
 ];

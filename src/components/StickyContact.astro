@@ -1,11 +1,12 @@
 ---
 import { Phone, Mail } from "lucide-react";
+import { siteConfig } from "../data/site";
 ---
 
 <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
     <!-- Phone Button -->
     <a
-        href="tel:+4975229785800"
+        href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
         class="group flex items-center justify-end"
         aria-label="Anrufen"
     >
@@ -23,7 +24,7 @@ import { Phone, Mail } from "lucide-react";
 
     <!-- Mail Button -->
     <a
-        href="mailto:info@n13-mode.de"
+        href={`mailto:${siteConfig.company.email}`}
         class="group flex items-center justify-end"
         aria-label="E-Mail schreiben"
     >

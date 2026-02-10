@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { brand } = Astro.props as { brand: Brand };
 ---
 
-<BaseLayout title={`${brand.name} – N13`} description={brand.shortDescription}>
+<BaseLayout title={brand.name} description={brand.shortDescription}>
     <!-- Hero -->
     <section
         class="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-dark overflow-hidden"

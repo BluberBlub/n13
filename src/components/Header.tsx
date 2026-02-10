@@ -8,10 +8,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { label: 'Home', href: '#home' },
-    { label: 'Über uns', href: '#about' },
-    { label: 'Unsere Brands', href: '#brands' },
-    { label: 'Kontakt', href: '#contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'Über uns', href: '/#about' },
+    { label: 'Unsere Brands', href: '/#brands' },
+    { label: 'Kontakt', href: '/#contact' },
 ];
 
 interface HeaderProps {
@@ -24,17 +24,16 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
 
     // Helper to check active state
     const isActive = (href: string) => {
-        // If we represent a homepage section and we are currently "spying" it
-        if (currentPath === '/' && activeSection === href) return true;
-
-        // Standard checks
-        if (href === '/' && currentPath === '/' && activeSection === '/') return true;
-        if (href !== '/' && currentPath.startsWith(href)) return true;
-
+        // If we are on the homepage, check against the active scroll section
+        if (currentPath === '/') {
+            // Compare href (e.g., '/#about') with activeSection (e.g., '/#about')
+            return activeSection === href;
+        }
+        // If on a subpage, no section is active unless we are exactly on that page (unlikely for anchors)
         return false;
     };
 
-    const [activeSection, setActiveSection] = useState(currentPath);
+    const [activeSection, setActiveSection] = useState<string>('/#home');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -43,14 +42,14 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             // ScrollSpy logic only on homepage
             if (currentPath === '/') {
                 const sections = [
-                    { id: 'home', href: '#home' },
-                    { id: 'about', href: '#about' },
-                    { id: 'brands', href: '#brands' },
-                    { id: 'contact', href: '#contact' }
+                    { id: 'home', href: '/#home' },
+                    { id: 'about', href: '/#about' },
+                    { id: 'brands', href: '/#brands' },
+                    { id: 'contact', href: '/#contact' }
                 ];
 
                 // Find the section that occupies the most viewport or is at the top
-                let current = '/';
+                let current = '/#home';
 
                 for (const section of sections) {
                     const element = document.getElementById(section.id);
@@ -121,7 +120,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                                 className={clsx(
                                     'text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300',
                                     // Special styling for Contact to be a button
-                                    item.href === '#contact'
+                                    item.href === '/#contact'
                                         ? (scrolled
                                             ? 'border border-dark px-6 py-2 hover:bg-dark hover:text-white'
                                             : 'border border-white px-6 py-2 hover:bg-white hover:text-dark drop-shadow-md text-white')
@@ -174,7 +173,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             {/* Mobile Menu Overlay */}
             <div
                 className={clsx(
-                    'fixed inset-0 bg-white/95 backdrop-blur-lg transition-all duration-500 md:hidden flex flex-col items-center justify-center z-40',
+                    'fixed inset-0 bg-white/95 backdrop-blur-lg transition-all duration-500 lg:hidden flex flex-col items-center justify-center z-40',
                     isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                 )}
             >
