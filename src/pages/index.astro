@@ -6,6 +6,7 @@ import MapSection from "../components/MapSection.astro";
 import InstagramFeed from "../components/InstagramFeed";
 import ReviewsSection from "../components/ReviewsSection.astro";
 import Marquee from "../components/Marquee.astro";
+import ContactForm from "../components/ContactForm";
 ---
 
 <BaseLayout
@@ -90,52 +91,113 @@ import Marquee from "../components/Marquee.astro";
 		<Marquee text="MODE & LIFESTYLE • WANGEN IM ALLGÄU • CONCEPT STORE" />
 	</div>
 
-	<!-- Welcome Section -->
+	<!-- About Section (Was Welcome) -->
 	<section
-		id="welcome"
+		id="about"
 		class="py-32 lg:py-40 bg-surface -mt-20 pt-32"
 		style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);"
 	>
-		<div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+			<div
+				class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+			>
+				<!-- Image Column -->
+				<div class="relative order-2 lg:order-1">
+					<div
+						class="aspect-[3/4] overflow-hidden shadow-2xl border-4 border-dark relative z-10"
+					>
+						<img
+							src="/images/about-us.jpg"
+							alt="Natalie & Nicola Endres"
+							class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+						/>
+					</div>
+					<div
+						class="absolute -bottom-6 -right-6 w-full h-full border-4 border-accent -z-0 hidden lg:block"
+					>
+					</div>
+				</div>
+
+				<!-- Text Column -->
+				<div class="order-1 lg:order-2">
+					<span
+						class="text-accent text-sm tracking-[0.2em] uppercase font-medium block mb-4"
+					>
+						Unsere Geschichte
+					</span>
+					<h2
+						class="font-heading text-3xl md:text-5xl font-light text-dark mb-8"
+					>
+						Das sind wir – N13
+					</h2>
+					<div
+						class="space-y-6 text-text-secondary leading-relaxed text-lg"
+					>
+						<p>
+							Entdecke eine einzigartige Mischung aus Mode,
+							Lifestyle und Genuss im Herzen von Wangen. Als
+							traditionsreiches Familienunternehmen in der <strong
+								class="text-dark">13. Generation</strong
+							>
+							laden wir, Natalie & Nicola Endres, dich herzlich ein.
+						</p>
+						<p>
+							Unser Concept-Store N13 ist mehr als nur ein
+							Geschäft – es ist ein Erlebnis. Wir glauben fest
+							daran, dass wahre Schönheit in der Vielfalt liegt.
+							<em class="text-dark font-medium block mt-2"
+								>„Normal kann jeder, aber wir sind Anders"</em
+							>
+						</p>
+					</div>
+					<div
+						class="mt-12 p-8 bg-bg-warm rounded-sm border-l-4 border-accent"
+					>
+						<p
+							class="font-heading text-xl text-dark font-light italic"
+						>
+							„Wir freuen uns darauf, dich im N13 willkommen zu
+							heißen!"
+						</p>
+						<p
+							class="mt-4 text-accent font-medium tracking-wider text-sm uppercase"
+						>
+							Natalie & Nicola
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Philosophy Section -->
+	<section
+		id="philosophy"
+		class="py-32 lg:py-40 bg-bg -mt-24 pt-32"
+		style="clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);"
+	>
+		<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
 			<span
 				class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+				>Unsere Philosophie</span
 			>
-				Willkommen
-			</span>
 			<h2
-				class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-8"
+				class="font-heading text-3xl md:text-4xl font-light text-dark mt-4 mb-8"
 			>
-				Herzlich Willkommen im N13
+				Wieso wir keinen Online Shop haben?
 			</h2>
-			<p
-				class="text-text-secondary text-lg leading-relaxed max-w-3xl mx-auto mb-6"
-			>
-				Entdecke eine einzigartige Mischung aus Mode, Lifestyle und
-				Genuss im Herzen von Wangen. Als traditionsreiches
-				Familienunternehmen in der 13. Generation laden wir, Natalie &
-				Nicola Endres, dich herzlich ein, Teil unserer facettenreichen
-				Community zu werden.
-			</p>
-			<p class="text-text-secondary leading-relaxed max-w-3xl mx-auto">
-				Unser Concept-Store N13 ist mehr als nur ein Geschäft – es ist
-				ein Erlebnis. Tauche ein in eine Welt voller Vielfalt,
-				Inspiration und Individualität.
-			</p>
-			<div
-				class="mt-10 flex items-center justify-center gap-8 text-text-muted text-sm"
-			>
-				<div class="flex items-center gap-2">
-					<div class="w-1 h-1 rounded-full bg-accent"></div>
-					13. Generation
-				</div>
-				<div class="flex items-center gap-2">
-					<div class="w-1 h-1 rounded-full bg-accent"></div>
-					Concept Store
-				</div>
-				<div class="flex items-center gap-2">
-					<div class="w-1 h-1 rounded-full bg-accent"></div>
-					Wangen im Allgäu
-				</div>
+			<div class="space-y-6 text-text-secondary leading-relaxed text-lg">
+				<p>
+					Wir glauben daran, dass ein Besuch in unserem Geschäft mehr
+					ist als nur eine Transaktion – es ist eine Möglichkeit, sich
+					zu inspirieren, zu entdecken und Teil einer Gemeinschaft zu
+					werden.
+				</p>
+				<p>
+					Persönliche Beziehungen und individuelle Beratung sind uns
+					wichtiger als Klicks. Komm vorbei und erlebe den Vibe vor
+					Ort!
+				</p>
 			</div>
 		</div>
 	</section>
@@ -298,39 +360,79 @@ import Marquee from "../components/Marquee.astro";
 	<!-- Map Section -->
 	<MapSection />
 
-	<!-- Contact CTA -->
+	<!-- Contact Section -->
 	<section
 		id="contact"
 		class="py-32 lg:py-40 bg-surface -mt-24 pt-32"
 		style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);"
 	>
-		<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-			<h2
-				class="font-heading text-3xl md:text-5xl font-light text-dark mb-6"
-			>
-				Wir freuen uns auf Deinen Besuch
-			</h2>
-			<p class="text-text-secondary mb-4 max-w-lg mx-auto">
-				{siteConfig.openingHours.weekdays}
-			</p>
-			<p class="text-text-secondary mb-10 max-w-lg mx-auto">
-				{siteConfig.openingHours.saturday}
-			</p>
-			<div
-				class="flex flex-col sm:flex-row items-center justify-center gap-4"
-			>
-				<a
-					href="/kontakt"
-					class="px-8 py-3.5 bg-accent text-white text-sm font-medium tracking-wider uppercase hover:bg-accent-dark transition-all duration-300"
+		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+				<!-- Contact Info -->
+				<div>
+					<span
+						class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+						>Kontakt</span
+					>
+					<h2
+						class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-8"
+					>
+						Wir freuen uns auf Dich
+					</h2>
+					<div class="space-y-8">
+						<div>
+							<h3
+								class="font-heading text-xl font-semibold text-dark mb-2"
+							>
+								Adresse
+							</h3>
+							<p class="text-text-secondary">
+								{siteConfig.company.address}<br />
+								{siteConfig.company.zip}
+								{siteConfig.company.city}
+							</p>
+						</div>
+						<div>
+							<h3
+								class="font-heading text-xl font-semibold text-dark mb-2"
+							>
+								Öffnungszeiten
+							</h3>
+							<p class="text-text-secondary">
+								{siteConfig.openingHours.weekdays}<br />
+								{siteConfig.openingHours.saturday}
+							</p>
+						</div>
+						<div>
+							<h3
+								class="font-heading text-xl font-semibold text-dark mb-2"
+							>
+								Kontakt
+							</h3>
+							<p class="text-text-secondary">
+								<a
+									href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
+									class="hover:text-accent transition-colors"
+								>
+									{siteConfig.company.phone}
+								</a><br />
+								<a
+									href={`mailto:${siteConfig.company.email}`}
+									class="hover:text-accent transition-colors"
+								>
+									{siteConfig.company.email}
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Contact Form -->
+				<div
+					class="bg-white p-8 lg:p-12 shadow-2xl border-t-4 border-accent"
 				>
-					Kontakt aufnehmen
-				</a>
-				<a
-					href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
-					class="px-8 py-3.5 border border-border text-text text-sm font-medium tracking-wider uppercase hover:border-accent hover:text-accent transition-all duration-300"
-				>
-					{siteConfig.company.phone}
-				</a>
+					<ContactForm client:visible />
+				</div>
 			</div>
 		</div>
 	</section>

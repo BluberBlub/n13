@@ -8,10 +8,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { label: 'Home', href: '/' },
-    { label: 'Unsere Brands', href: '/modewelt' },
-    { label: 'Das sind wir', href: '/das-sind-wir' },
-    { label: 'Kontakt', href: '/kontakt' },
+    { label: 'Home', href: '#home' },
+    { label: 'Über uns', href: '#about' },
+    { label: 'Unsere Brands', href: '#brands' },
+    { label: 'Kontakt', href: '#contact' },
 ];
 
 interface HeaderProps {
@@ -43,10 +43,10 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             // ScrollSpy logic only on homepage
             if (currentPath === '/') {
                 const sections = [
-                    { id: 'home', href: '/' },
-                    { id: 'brands', href: '/modewelt' },
-                    { id: 'welcome', href: '/das-sind-wir' },
-                    { id: 'contact', href: '/kontakt' }
+                    { id: 'home', href: '#home' },
+                    { id: 'about', href: '#about' },
+                    { id: 'brands', href: '#brands' },
+                    { id: 'contact', href: '#contact' }
                 ];
 
                 // Find the section that occupies the most viewport or is at the top
@@ -97,15 +97,30 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
+                    {/* Logo */}
                     <a
                         href="/"
-                        className={clsx(
-                            'font-heading text-3xl font-bold tracking-wider transition-colors duration-300',
-                            scrolled ? 'text-dark' : 'text-white'
-                        )}
+                        className="flex items-center gap-2 group"
                         aria-label="N13 Home"
                     >
-                        N13
+                        <img
+                            src="/images/logo-n13.png"
+                            alt="N13 Logo"
+                            className={clsx(
+                                "h-12 w-auto transition-all duration-300",
+                                scrolled ? "brightness-0" : "brightness-0 invert"
+                            )}
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                        />
+                        <span className={clsx(
+                            'hidden font-heading text-3xl font-bold tracking-wider transition-colors duration-300 drop-shadow-md',
+                            scrolled ? 'text-dark' : 'text-white'
+                        )}>
+                            N13
+                        </span>
                     </a>
 
                     {/* Desktop Navigation */}
