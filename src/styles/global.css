@@ -97,10 +97,10 @@
   --color-text-muted: #A8A29E;
   /* Stone-400 */
 
-  --color-accent: #C2A25D;
-  /* Muted Elegant Gold */
-  --color-accent-dark: #A18545;
-  --color-accent-light: #E5C985;
+  --color-accent: #CBB993;
+  /* Warm Sand (Komplementär zu #93A5CB) */
+  --color-accent-dark: #B5A27C;
+  --color-accent-light: #DDD0B5;
 
   --color-border: #E7E5E4;
   /* Stone-200 */
@@ -215,6 +215,7 @@ img {
 
 /* A11y: Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

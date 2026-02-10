@@ -22,24 +22,19 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    // Helper to check active state
+    const [activeSection, setActiveSection] = useState<string>('/#home');
+
     const isActive = (href: string) => {
-        // If we are on the homepage, check against the active scroll section
         if (currentPath === '/') {
-            // Compare href (e.g., '/#about') with activeSection (e.g., '/#about')
             return activeSection === href;
         }
-        // If on a subpage, no section is active unless we are exactly on that page (unlikely for anchors)
         return false;
     };
-
-    const [activeSection, setActiveSection] = useState<string>('/#home');
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
 
-            // ScrollSpy logic only on homepage
             if (currentPath === '/') {
                 const sections = [
                     { id: 'home', href: '/#home' },
@@ -48,15 +43,12 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                     { id: 'contact', href: '/#contact' }
                 ];
 
-                // Find the section that occupies the most viewport or is at the top
                 let current = '/#home';
-
                 for (const section of sections) {
                     const element = document.getElementById(section.id);
                     if (element) {
                         const rect = element.getBoundingClientRect();
                         const viewportHeight = window.innerHeight;
-                        // Check if the section crosses the middle of the viewport
                         if (rect.top <= viewportHeight / 2 && rect.bottom >= viewportHeight / 2) {
                             current = section.href;
                         }
@@ -67,9 +59,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        // Initial check
         handleScroll();
-
         return () => window.removeEventListener('scroll', handleScroll);
     }, [currentPath]);
 
@@ -89,8 +79,8 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
             className={clsx(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
                 scrolled
-                    ? 'bg-white/95 backdrop-blur-md shadow-sm'
-                    : 'bg-transparent'
+                    ? 'bg-white shadow-sm'
+                    : 'bg-gradient-to-b from-dark/70 via-dark/30 to-transparent'
             )}
         >
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -118,20 +108,21 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                                 key={item.href}
                                 href={item.href}
                                 className={clsx(
-                                    'text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300',
-                                    // Special styling for Contact to be a button
+                                    'text-sm font-bold tracking-[0.15em] uppercase transition-all duration-300',
                                     item.href === '/#contact'
                                         ? (scrolled
-                                            ? 'border border-dark px-6 py-2 hover:bg-dark hover:text-white'
-                                            : 'border border-white px-6 py-2 hover:bg-white hover:text-dark drop-shadow-md text-white')
+                                            ? 'border border-dark px-6 py-2 hover:bg-dark hover:text-white text-dark'
+                                            : 'border border-white/90 px-6 py-2 hover:bg-white hover:text-dark text-white')
                                         : (
                                             isActive(item.href)
-                                                ? 'border-b-2 border-accent text-accent'
+                                                ? (scrolled
+                                                    ? 'text-accent border-b-2 border-accent'
+                                                    : 'text-white border-b-2 border-accent')
                                                 : clsx(
                                                     'border-b-2 border-transparent',
                                                     scrolled
                                                         ? 'text-dark hover:text-accent'
-                                                        : 'text-white hover:text-white/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]'
+                                                        : 'text-white/95 hover:text-white'
                                                 )
                                         )
                                 )}
@@ -147,7 +138,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                                 'transition-colors duration-300 hover:text-accent',
                                 scrolled
                                     ? 'text-dark'
-                                    : 'text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]'
+                                    : 'text-white/90'
                             )}
                             aria-label="Instagram"
                         >
@@ -159,7 +150,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                     <button
                         className={clsx(
                             'lg:hidden p-2 transition-colors duration-300',
-                            scrolled ? 'text-dark' : 'text-white drop-shadow-md'
+                            scrolled ? 'text-dark' : 'text-white'
                         )}
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label={isOpen ? 'Menü schließen' : 'Menü öffnen'}
