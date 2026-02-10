@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
     name: 'N13',
     description:
         'Wir, Natalie & Nicola Endres, freuen uns Dich zusammen mit unserem kleinen Team in unserer facettenreichen Mode & Lifestyle Welt begrüßen zu dürfen.',
-    url: 'https://www.n13.store',
+    url: 'https://n13.niko-endres.de',
     company: {
         legalName: 'N13 GmbH & Co. KG',
         address: 'Marktplatz 10',
