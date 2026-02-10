@@ -55,18 +55,20 @@ export default function InstagramFeed({ accessToken, limit = 4 }: InstagramFeedP
     // Fallback content if no posts (error or no token)
     if (!loading && (error || posts.length === 0)) {
         return (
-            <div className="text-center p-12 border-2 border-dashed border-dark/20">
-                <p className="font-heading text-2xl text-dark mb-4 uppercase">
-                    Folge dem Vibe
-                </p>
-                <a
-                    href="https://www.instagram.com/n13store/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-8 py-3 bg-dark text-white font-bold tracking-widest uppercase hover:bg-accent transition-colors"
-                >
-                    @n13store
-                </a>
+            <div className="text-center p-12 border-2 border-dashed border-dark/20 relative group overflow-hidden">
+                <div className="relative z-10">
+                    <p className="font-heading text-2xl text-dark mb-4 uppercase">
+                        Folge dem Vibe
+                    </p>
+                    <a
+                        href="https://www.instagram.com/n13store/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-8 py-3 bg-dark text-white font-bold tracking-widest uppercase hover:bg-accent transition-colors"
+                    >
+                        @n13store
+                    </a>
+                </div>
             </div>
         );
     }

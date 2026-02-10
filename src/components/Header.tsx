@@ -56,8 +56,9 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                     const element = document.getElementById(section.id);
                     if (element) {
                         const rect = element.getBoundingClientRect();
-                        // If section top is within the upper half of screen or close to top
-                        if (rect.top <= 200 && rect.bottom >= 200) {
+                        const viewportHeight = window.innerHeight;
+                        // Check if the section crosses the middle of the viewport
+                        if (rect.top <= viewportHeight / 2 && rect.bottom >= viewportHeight / 2) {
                             current = section.href;
                         }
                     }
