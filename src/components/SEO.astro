@@ -1,0 +1,72 @@
+---
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+
+import { siteConfig } from "../data/site";
+
+const siteUrl = siteConfig.url;
+const fullTitle = `${title} – ${siteConfig.name}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={siteUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content="de_DE" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+
+<!-- Structured Data: LocalBusiness -->
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        name: siteConfig.name,
+        description: siteConfig.description,
+        url: siteConfig.url,
+        telephone: siteConfig.company.phone,
+        email: siteConfig.company.email,
+        address: {
+            "@type": "PostalAddress",
+            streetAddress: siteConfig.company.address,
+            addressLocality: siteConfig.company.city,
+            postalCode: siteConfig.company.zip,
+            addressCountry: "DE",
+        },
+        openingHoursSpecification: [
+            {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                ],
+                opens: "10:00",
+                closes: "18:00",
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: "Saturday",
+                opens: "10:00",
+                closes: "15:00",
+            },
+        ],
+        sameAs: [siteConfig.social.instagram],
+    })}
+/>

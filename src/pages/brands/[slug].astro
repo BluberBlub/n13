@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { brands, type Brand } from "../../data/brands";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    return brands.map((brand) => ({
+        params: { slug: brand.slug },
+        props: { brand },
+    }));
+};
+
+const { brand } = Astro.props as { brand: Brand };
+---
+
+<BaseLayout title={`${brand.name} – N13`} description={brand.shortDescription}>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 bg-dark overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-5"
+            style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"
+        >
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+                {
+                    brand.categories.map((cat: string) => (
+                        <span class="text-xs px-3 py-1 bg-white/10 text-white/70 rounded-full">
+                            {cat}
+                        </span>
+                    ))
+                }
+            </div>
+            <h1
+                class="font-heading text-4xl md:text-6xl font-light text-white tracking-wider"
+            >
+                {brand.name}
+            </h1>
+            <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto">
+                {brand.shortDescription}
+            </p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-24 lg:py-32 bg-surface">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <div class="text-text-secondary leading-relaxed text-lg">
+                <p>{brand.description}</p>
+            </div>
+
+            <div class="mt-16 p-8 bg-bg-warm rounded-2xl text-center">
+                <p class="font-heading text-xl text-dark font-light">
+                    Entdecke {brand.name} bei uns im Store –<br />
+                    wir freuen uns auf deinen Besuch!
+                </p>
+                <div
+                    class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <a
+                        href="/kontakt"
+                        class="px-6 py-3 bg-accent text-white text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-accent-dark transition-all duration-300"
+                    >
+                        Kontakt aufnehmen
+                    </a>
+                    <a
+                        href="/modewelt"
+                        class="px-6 py-3 border border-border text-text text-sm font-medium tracking-wider uppercase rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
+                    >
+                        Alle Brands
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Brands -->
+    <section class="py-24 lg:py-32 bg-bg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl font-light text-dark">
+                    Weitere Brands
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {
+                    brands
+                        .filter((b) => b.slug !== brand.slug)
+                        .slice(0, 4)
+                        .map((b) => (
+                            <a
+                                href={`/brands/${b.slug}`}
+                                class="group p-6 bg-surface rounded-xl border border-border-light hover:border-accent/30 text-center transition-all duration-300"
+                            >
+                                <span class="font-heading text-lg text-dark group-hover:text-accent transition-colors duration-300">
+                                    {b.name}
+                                </span>
+                            </a>
+                        ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>

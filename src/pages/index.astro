@@ -1,0 +1,307 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { brands } from "../data/brands";
+import { siteConfig } from "../data/site";
+import MapSection from "../components/MapSection.astro";
+import InstagramFeed from "../components/InstagramFeed";
+---
+
+<BaseLayout
+	title="N13 – Mode & Lifestyle in Wangen im Allgäu"
+	description={siteConfig.description}
+>
+	<!-- Hero Section -->
+	<section
+		class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+	>
+		<!-- Background with image and overlay -->
+		<div class="absolute inset-0">
+			<img
+				src="/images/hero-bg.jpg"
+				alt="N13 Store Interior"
+				class="w-full h-full object-cover"
+			/>
+			<div
+				class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/40 to-dark/80"
+			>
+			</div>
+		</div>
+
+		<div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+			<div class="inline-block mb-6">
+				<span
+					class="text-accent text-sm tracking-[0.3em] uppercase font-medium"
+				>
+					Mode & Lifestyle
+				</span>
+			</div>
+			<h1
+				class="font-heading text-5xl md:text-7xl lg:text-8xl font-light text-white mb-6 tracking-wider"
+			>
+				N13
+			</h1>
+			<p
+				class="text-white/70 text-lg md:text-xl font-light max-w-2xl mx-auto mb-4 leading-relaxed"
+			>
+				Herzlich Willkommen
+			</p>
+			<p
+				class="text-white/50 text-base md:text-lg font-light max-w-xl mx-auto leading-relaxed"
+			>
+				Individuell wie Du – im Herzen von Wangen im Allgäu
+			</p>
+			<div
+				class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+			>
+				<a
+					href="/modewelt"
+					class="px-8 py-3.5 bg-accent text-white text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-accent-dark transition-all duration-300"
+				>
+					Unsere Brands entdecken
+				</a>
+				<a
+					href="/das-sind-wir"
+					class="px-8 py-3.5 border border-white/30 text-white text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-white/10 transition-all duration-300"
+				>
+					Mehr erfahren
+				</a>
+			</div>
+		</div>
+
+		<!-- Scroll indicator -->
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+			<div
+				class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2"
+			>
+				<div class="w-1 h-3 bg-white/50 rounded-full"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Welcome Section -->
+	<section class="py-24 lg:py-32 bg-surface">
+		<div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+			<span
+				class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+			>
+				Willkommen
+			</span>
+			<h2
+				class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-8"
+			>
+				Herzlich Willkommen im N13
+			</h2>
+			<p
+				class="text-text-secondary text-lg leading-relaxed max-w-3xl mx-auto mb-6"
+			>
+				Entdecke eine einzigartige Mischung aus Mode, Lifestyle und
+				Genuss im Herzen von Wangen. Als traditionsreiches
+				Familienunternehmen in der 13. Generation laden wir, Natalie &
+				Nicola Endres, dich herzlich ein, Teil unserer facettenreichen
+				Community zu werden.
+			</p>
+			<p class="text-text-secondary leading-relaxed max-w-3xl mx-auto">
+				Unser Concept-Store N13 ist mehr als nur ein Geschäft – es ist
+				ein Erlebnis. Tauche ein in eine Welt voller Vielfalt,
+				Inspiration und Individualität.
+			</p>
+			<div
+				class="mt-10 flex items-center justify-center gap-8 text-text-muted text-sm"
+			>
+				<div class="flex items-center gap-2">
+					<div class="w-1 h-1 rounded-full bg-accent"></div>
+					13. Generation
+				</div>
+				<div class="flex items-center gap-2">
+					<div class="w-1 h-1 rounded-full bg-accent"></div>
+					Concept Store
+				</div>
+				<div class="flex items-center gap-2">
+					<div class="w-1 h-1 rounded-full bg-accent"></div>
+					Wangen im Allgäu
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Brands Grid -->
+	<section class="py-24 lg:py-32 bg-bg">
+		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<span
+					class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+				>
+					Unsere Marken
+				</span>
+				<h2
+					class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-6"
+				>
+					Unsere Brands
+				</h2>
+				<p class="text-text-secondary max-w-2xl mx-auto">
+					Ein kleiner Einblick in die Vielfalt unserer Labels – diese
+					und noch weitere Brands erwarten euch im N13.
+				</p>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+			>
+				{
+					brands.map((brand) => (
+						<a
+							href={`/brands/${brand.slug}`}
+							class="group bg-surface rounded-xl overflow-hidden border border-border-light hover:border-accent/30 hover:shadow-lg transition-all duration-500"
+						>
+							<div class="aspect-[4/3] bg-bg-warm relative overflow-hidden">
+								{brand.image ? (
+									<img
+										src={brand.image}
+										alt={brand.name}
+										class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+									/>
+								) : (
+									<div class="absolute inset-0 flex items-center justify-center">
+										<span class="font-heading text-3xl md:text-4xl font-light text-dark/20 group-hover:text-accent/40 transition-colors duration-500 tracking-wider">
+											{brand.name}
+										</span>
+									</div>
+								)}
+								<div class="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+							</div>
+							<div class="p-6">
+								<h3 class="font-heading text-xl font-semibold text-dark group-hover:text-accent transition-colors duration-300 mb-2">
+									{brand.name}
+								</h3>
+								<p class="text-sm text-text-secondary line-clamp-2 mb-4">
+									{brand.shortDescription}
+								</p>
+								<div class="flex flex-wrap gap-2">
+									{brand.categories
+										.slice(0, 3)
+										.map((cat: string) => (
+											<span class="text-xs px-2.5 py-1 bg-bg-warm text-text-muted rounded-full">
+												{cat}
+											</span>
+										))}
+								</div>
+							</div>
+						</a>
+					))
+				}
+			</div>
+
+			<div class="text-center mt-12">
+				<a
+					href="/modewelt"
+					class="inline-flex items-center gap-2 px-8 py-3.5 border border-dark text-dark text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-dark hover:text-white transition-all duration-300"
+				>
+					Alle Brands entdecken
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+						></path></svg
+					>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Instagram Feed -->
+	<section class="py-24 lg:py-32 bg-bg-warm">
+		<div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+			<span
+				class="text-accent text-sm tracking-[0.2em] uppercase font-medium"
+			>
+				Folge uns
+			</span>
+			<h2
+				class="font-heading text-3xl md:text-5xl font-light text-dark mt-4 mb-6"
+			>
+				Hier findest Du uns auf Instagram
+			</h2>
+			<p class="text-text-secondary mb-10 max-w-lg mx-auto">
+				Entdecke unsere neuesten Looks, Events und Behind-the-Scenes auf
+				Instagram.
+			</p>
+
+			<div class="mb-12">
+				<InstagramFeed
+					client:visible
+					accessToken={import.meta.env.PUBLIC_INSTAGRAM_TOKEN}
+				/>
+			</div>
+
+			<a
+				href={siteConfig.social.instagram}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-3 px-8 py-4 bg-dark text-white rounded-lg hover:bg-dark-soft transition-all duration-300"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><rect width="20" height="20" x="2" y="2" rx="5" ry="5"
+					></rect><path
+						d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+					></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"
+					></line></svg
+				>
+				<span class="text-sm font-medium tracking-wider uppercase"
+					>@n13store</span
+				>
+			</a>
+		</div>
+	</section>
+
+	<!-- Map Section -->
+	<MapSection />
+
+	<!-- Contact CTA -->
+	<section class="py-24 lg:py-32 bg-surface">
+		<div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+			<h2
+				class="font-heading text-3xl md:text-5xl font-light text-dark mb-6"
+			>
+				Wir freuen uns auf Deinen Besuch
+			</h2>
+			<p class="text-text-secondary mb-4 max-w-lg mx-auto">
+				{siteConfig.openingHours.weekdays}
+			</p>
+			<p class="text-text-secondary mb-10 max-w-lg mx-auto">
+				{siteConfig.openingHours.saturday}
+			</p>
+			<div
+				class="flex flex-col sm:flex-row items-center justify-center gap-4"
+			>
+				<a
+					href="/kontakt"
+					class="px-8 py-3.5 bg-accent text-white text-sm font-medium tracking-wider uppercase rounded-lg hover:bg-accent-dark transition-all duration-300"
+				>
+					Kontakt aufnehmen
+				</a>
+				<a
+					href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
+					class="px-8 py-3.5 border border-border text-text text-sm font-medium tracking-wider uppercase rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
+				>
+					{siteConfig.company.phone}
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,218 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../data/site";
+---
+
+<BaseLayout
+    title="Impressum – N13"
+    description="Impressum der N13 GmbH & Co. KG, Marktplatz 10, 88239 Wangen im Allgäu."
+>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-16 bg-dark">
+        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1
+                class="font-heading text-4xl md:text-5xl font-light text-white tracking-wider"
+            >
+                Impressum
+            </h1>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 lg:py-24 bg-surface">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <div class="space-y-12 text-text-secondary leading-relaxed">
+                <!-- Company Info -->
+                <div>
+                    <h2
+                        class="font-heading text-2xl font-semibold text-dark mb-4"
+                    >
+                        Angaben gemäß § 5 TMG
+                    </h2>
+                    <p>
+                        {siteConfig.company.legalName}<br />
+                        Geschäftsführung: {siteConfig.company.management}<br />
+                        {siteConfig.company.address}<br />
+                        {siteConfig.company.zip}
+                        {siteConfig.company.city}
+                    </p>
+                    <p class="mt-4">
+                        Tel.: <a
+                            href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
+                            class="hover:text-accent transition-colors"
+                            >{siteConfig.company.phone}</a
+                        ><br />
+                        E-Mail: <a
+                            href={`mailto:${siteConfig.company.email}`}
+                            class="hover:text-accent transition-colors"
+                            >{siteConfig.company.email}</a
+                        ><br />
+                        Web: <a
+                            href={siteConfig.url}
+                            class="hover:text-accent transition-colors"
+                            >{siteConfig.company.website}</a
+                        >
+                    </p>
+                </div>
+
+                <hr class="border-border" />
+
+                <!-- Haftungsausschluss -->
+                <div>
+                    <h2
+                        class="font-heading text-2xl font-semibold text-dark mb-4"
+                    >
+                        Haftungsausschluss
+                    </h2>
+                    <p>
+                        Diese Website wurde mit größtmöglicher Sorgfalt
+                        zusammengestellt. Trotzdem kann N13 für die
+                        Fehlerfreiheit und Genauigkeit der enthaltenen
+                        Informationen nicht garantieren. N13 schließt jegliche
+                        Haftung für Schäden, die direkt oder indirekt aus der
+                        Benutzung dieser Website entstehen aus, soweit diese
+                        nicht auf Vorsatz oder grober Fahrlässigkeit von N13
+                        beruhen.
+                    </p>
+                </div>
+
+                <hr class="border-border" />
+
+                <!-- Externe Verweise -->
+                <div>
+                    <h2
+                        class="font-heading text-2xl font-semibold text-dark mb-4"
+                    >
+                        Externe Verweise und Links
+                    </h2>
+                    <p>
+                        Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir
+                        keine Haftung für die Inhalte externer Links. Für den
+                        Inhalt der verlinkten Seiten sind ausschließlich deren
+                        Betreiber verantwortlich.
+                    </p>
+                </div>
+
+                <hr class="border-border" />
+
+                <!-- Widerrufsbelehrung -->
+                <div>
+                    <h2
+                        class="font-heading text-2xl font-semibold text-dark mb-4"
+                    >
+                        Widerrufsbelehrung
+                    </h2>
+
+                    <h3
+                        class="font-heading text-lg font-semibold text-dark mt-6 mb-3"
+                    >
+                        Widerrufsrecht
+                    </h3>
+                    <p>
+                        Sie haben das Recht, binnen vierzehn Tagen ohne Angabe
+                        von Gründen diesen Vertrag zu widerrufen. Die
+                        Widerrufsfrist beträgt vierzehn Tage ab dem Tag,
+                    </p>
+                    <ul class="list-disc pl-6 mt-3 space-y-2">
+                        <li>
+                            an dem Sie oder ein von Ihnen benannter Dritter, der
+                            nicht der Beförderer ist, die Waren in Besitz
+                            genommen haben bzw. hat, sofern Sie eine oder
+                            mehrere Waren im Rahmen einer einheitlichen
+                            Bestellung bestellt haben und diese einheitlich
+                            geliefert wird bzw. werden;
+                        </li>
+                        <li>
+                            an dem Sie oder ein von Ihnen benannter Dritter, der
+                            nicht der Beförderer ist, die letzte Ware in Besitz
+                            genommen haben bzw. hat, sofern Sie mehrere Waren im
+                            Rahmen einer einheitlichen Bestellung bestellt haben
+                            und die getrennt geliefert werden;
+                        </li>
+                        <li>
+                            an dem Sie oder ein von Ihnen benannter Dritter, der
+                            nicht der Beförderer ist, die letzte Teilsendung
+                            oder das letzte Stück in Besitz genommen haben bzw.
+                            hat, sofern Sie eine Ware bestellt haben, die in
+                            mehreren Teilsendungen oder Stücken geliefert wird;
+                        </li>
+                        <li>
+                            an dem Sie oder ein von Ihnen benannter Dritter, der
+                            nicht der Beförderer ist, die erste Ware in Besitz
+                            genommen haben bzw. hat, sofern im Rahmen einer
+                            Bestellung Waren zur regelmäßigen Lieferung von
+                            Waren über einen festgelegten Zeitraum hinweg
+                            geliefert werden.
+                        </li>
+                    </ul>
+
+                    <p class="mt-4">
+                        Um Ihr Widerrufsrecht auszuüben, müssen Sie uns ({
+                            siteConfig.company.legalName
+                        }, Geschäftsführung: {siteConfig.company.management}, {
+                            siteConfig.company.address
+                        },
+                        {siteConfig.company.zip}
+                        {siteConfig.company.city}, Tel.: {
+                            siteConfig.company.phone
+                        },
+                        {siteConfig.company.email}, {
+                            siteConfig.company.website
+                        }) mittels einer eindeutigen Erklärung (z.B. ein mit der
+                        Post versandter Brief, Telefax oder E-Mail) über Ihren
+                        Entschluss, diesen Vertrag zu widerrufen, informieren.
+                    </p>
+
+                    <h3
+                        class="font-heading text-lg font-semibold text-dark mt-6 mb-3"
+                    >
+                        Folgen des Widerrufs
+                    </h3>
+                    <p>
+                        Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle
+                        Zahlungen, die wir von Ihnen erhalten haben,
+                        einschließlich der Lieferkosten (mit Ausnahme der
+                        zusätzlichen Kosten, die sich daraus ergeben, dass Sie
+                        eine andere Art der Lieferung als die von uns
+                        angebotene, günstigste Standardlieferung gewählt haben),
+                        unverzüglich und spätestens binnen vierzehn Tagen ab dem
+                        Tag zurückzuzahlen, an dem die Mitteilung über Ihren
+                        Widerruf dieses Vertrags bei uns eingegangen ist.
+                    </p>
+
+                    <h3
+                        class="font-heading text-lg font-semibold text-dark mt-6 mb-3"
+                    >
+                        Ausschluss- bzw. Erlöschensgründe
+                    </h3>
+                    <p>Das Widerrufsrecht besteht nicht bei Verträgen</p>
+                    <ul class="list-disc pl-6 mt-3 space-y-2">
+                        <li>
+                            zur Lieferung von Waren, die nicht vorgefertigt sind
+                            und für deren Herstellung eine individuelle Auswahl
+                            oder Bestimmung durch den Verbraucher maßgeblich ist
+                            oder die eindeutig auf die persönlichen Bedürfnisse
+                            des Verbrauchers zugeschnitten sind;
+                        </li>
+                        <li>
+                            zur Lieferung von Waren, die schnell verderben
+                            können oder deren Verfallsdatum schnell
+                            überschritten würde;
+                        </li>
+                        <li>
+                            zur Lieferung alkoholischer Getränke, deren Preis
+                            bei Vertragsschluss vereinbart wurde, die aber
+                            frühestens 30 Tage nach Vertragsschluss geliefert
+                            werden können und deren aktueller Wert von
+                            Schwankungen auf dem Markt abhängt;
+                        </li>
+                        <li>
+                            zur Lieferung von Zeitungen, Zeitschriften oder
+                            Illustrierten mit Ausnahme von Abonnement-Verträgen.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

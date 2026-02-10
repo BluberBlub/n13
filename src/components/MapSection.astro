@@ -1,0 +1,167 @@
+---
+import { siteConfig } from "../data/site";
+import "leaflet/dist/leaflet.css";
+---
+
+<section id="location" class="py-24 lg:py-32 bg-surface">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+        >
+            <!-- Text Content -->
+            <div class="order-2 lg:order-1">
+                <span
+                    class="text-accent text-sm tracking-[0.2em] uppercase font-medium block mb-4"
+                >
+                    Anfahrt
+                </span>
+                <h2
+                    class="font-heading text-3xl md:text-5xl font-light text-dark mb-8"
+                >
+                    Hier findest Du uns
+                </h2>
+
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center shrink-0"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-accent"
+                                ><path
+                                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                                ></path><circle cx="12" cy="10" r="3"
+                                ></circle></svg
+                            >
+                        </div>
+                        <div>
+                            <h3
+                                class="font-heading text-xl font-medium text-dark mb-2"
+                            >
+                                Adresse
+                            </h3>
+                            <p class="text-text-secondary leading-relaxed">
+                                {siteConfig.company.address}<br />
+                                {siteConfig.company.zip}
+                                {siteConfig.company.city}
+                            </p>
+                            <a
+                                href="https://www.google.com/maps/dir//Marktplatz+10,+88239+Wangen+im+Allg%C3%A4u"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-4 text-sm font-medium text-accent hover:text-accent-dark transition-colors"
+                                id="route-link"
+                            >
+                                Route planen →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center shrink-0"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-accent"
+                                ><circle cx="12" cy="12" r="10"
+                                ></circle><polyline points="12 6 12 12 16 14"
+                                ></polyline></svg
+                            >
+                        </div>
+                        <div>
+                            <h3
+                                class="font-heading text-xl font-medium text-dark mb-2"
+                            >
+                                Öffnungszeiten
+                            </h3>
+                            <p class="text-text-secondary leading-relaxed">
+                                {siteConfig.openingHours.weekdays}<br />
+                                {siteConfig.openingHours.saturday}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div
+                class="order-1 lg:order-2 h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl z-0 relative"
+            >
+                <div id="map" class="w-full h-full z-0"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Ensure Leaflet controls don't overlap with header if sticky */
+    :global(.leaflet-control-container .leaflet-top) {
+        z-index: 40;
+    }
+</style>
+
+<script>
+    import L from "leaflet";
+
+    // Coordinates for Marktplatz 10, Wangen im Allgäu
+    const lat = 47.68753;
+    const lng = 9.83465;
+
+    // Initialize map only if element exists
+    const mapElement = document.getElementById("map");
+
+    if (mapElement) {
+        const map = L.map("map", {
+            center: [lat, lng],
+            zoom: 17,
+            scrollWheelZoom: false,
+        });
+
+        L.tileLayer(
+            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+            {
+                attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: "abcd",
+                maxZoom: 20,
+            },
+        ).addTo(map);
+
+        // Custom Icon
+        const icon = L.divIcon({
+            className: "custom-div-icon",
+            html: `<div style="background-color: #B8956A; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+        });
+
+        const marker = L.marker([lat, lng], { icon }).addTo(map);
+
+        const popupContent = `
+      <div class="font-sans text-center p-2">
+        <strong class="text-[#2D2926] text-base">N13</strong><br>
+        <span class="text-gray-600 text-sm">Marktplatz 10</span>
+      </div>
+    `;
+
+        marker.bindPopup(popupContent).openPopup();
+    }
+</script>
