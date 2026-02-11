@@ -14,46 +14,46 @@ const description =
     >
         <div class="absolute inset-0">
             <img
-                src="/images/hero-bg-faces.jpg"
+                src="/images/hero-n13.png"
                 alt="N13 Brands"
                 class="w-full h-full object-cover scale-105 animate-kenburns"
             />
             <div
-                class="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/20 to-bg-surface"
+                class="absolute inset-0 -bottom-1 bg-gradient-to-b from-stone-900/60 via-stone-900/40 to-white"
             >
             </div>
         </div>
 
-        <div
-            class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center mt-20"
-        >
-            <span
-                class="inline-block py-1 px-3 border border-white/20 backdrop-blur-md rounded-full text-white/80 text-xs font-heading tracking-widest uppercase mb-4"
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto mt-20">
+            <div
+                class="bg-white backdrop-blur-xl border border-white/30 rounded-sm px-8 py-14 md:px-16 md:py-20 shadow-2xl"
             >
-                Unsere Kollektionen
-            </span>
-            <h1
-                class="font-heading text-5xl md:text-7xl font-light text-white tracking-tight mb-6 drop-shadow-lg"
-            >
-                Unsere Markenwelt
-            </h1>
-            <p
-                class="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md"
-            >
-                Eine handverlesene Auswahl an Labels, die uns durch Qualität,
-                Stil und Geschichte begeistern.
-            </p>
+                <span
+                    class="inline-block text-accent text-xs md:text-sm tracking-[0.4em] uppercase font-semibold mb-8 border border-accent/30 px-5 py-2"
+                >
+                    Unsere Kollektionen
+                </span>
+
+                <h1
+                    class="text-dark text-4xl md:text-6xl font-heading font-light tracking-wide mb-6"
+                >
+                    Unsere Markenwelt
+                </h1>
+
+                <div class="w-20 h-0.5 bg-accent mx-auto my-6"></div>
+
+                <p
+                    class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed"
+                >
+                    Eine handverlesene Auswahl an Labels, die uns durch
+                    Qualität, Stil und Geschichte begeistern.
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- Brands Grid -->
     <section class="py-24 bg-surface relative">
-        <!-- Decorative subtle background -->
-        <div
-            class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dark/10 to-transparent"
-        >
-        </div>
-
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14"
@@ -70,7 +70,7 @@ const description =
                                         src={brand.image}
                                         alt={brand.name}
                                         loading="lazy"
-                                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                                     />
                                 ) : (
                                     <div class="flex flex-col items-center justify-center p-6 text-center z-10">

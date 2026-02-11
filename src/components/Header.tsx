@@ -108,15 +108,24 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                                 key={item.href}
                                 href={item.href}
                                 className={clsx(
-                                    'text-sm font-bold tracking-[0.15em] uppercase transition-all duration-300 border-b-2',
-                                    isActive(item.href)
-                                        ? 'border-accent text-accent'
-                                        : 'border-transparent',
-                                    !isActive(item.href) && (
-                                        scrolled
-                                            ? 'text-dark hover:text-accent'
-                                            : 'text-white/90 hover:text-white'
-                                    )
+                                    item.label === 'Kontakt'
+                                        ? clsx(
+                                            'px-6 py-2 border-2 transition-all duration-300',
+                                            scrolled
+                                                ? 'border-dark text-dark hover:bg-dark hover:text-white'
+                                                : 'border-white text-white hover:bg-white hover:text-dark'
+                                        )
+                                        : clsx(
+                                            'border-b-2',
+                                            isActive(item.href)
+                                                ? 'border-accent text-accent'
+                                                : 'border-transparent',
+                                            !isActive(item.href) && (
+                                                scrolled
+                                                    ? 'text-dark hover:text-accent'
+                                                    : 'text-white/90 hover:text-white'
+                                            )
+                                        )
                                 )}
                             >
                                 {item.label}
