@@ -52,7 +52,9 @@ const { brand } = Astro.props as { brand: Brand };
     </section>
 
     <!-- Content -->
-    <section class="py-24 bg-white relative z-10">
+    <section
+        class="py-24 bg-white relative z-10 -mt-12 rounded-t-[3rem] shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.1)]"
+    >
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
             <div
                 class="prose prose-lg prose-p:text-text-secondary prose-headings:font-heading prose-headings:font-light mx-auto leading-relaxed"
@@ -94,7 +96,9 @@ const { brand } = Astro.props as { brand: Brand };
     </section>
 
     <!-- Other Brands -->
-    <section class="py-24 bg-surface border-t border-border">
+    <section
+        class="py-24 bg-surface border-t border-border relative z-20 rounded-b-[3rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]"
+    >
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-12">
                 <span
