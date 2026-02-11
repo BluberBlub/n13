@@ -78,7 +78,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
         <header
             className={clsx(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-                scrolled
+                scrolled && !isOpen
                     ? 'bg-white shadow-sm'
                     : 'bg-gradient-to-b from-dark/70 via-dark/30 to-transparent'
             )}
@@ -96,7 +96,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                             alt="N13 Logo"
                             className={clsx(
                                 "h-12 w-auto transition-all duration-300",
-                                scrolled ? "brightness-0" : "brightness-0 invert"
+                                (scrolled && !isOpen) ? "brightness-0" : "brightness-0 invert"
                             )}
                         />
                     </a>
@@ -142,7 +142,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                     <button
                         className={clsx(
                             'lg:hidden p-2 transition-colors duration-300',
-                            scrolled ? 'text-dark' : 'text-white'
+                            (scrolled && !isOpen) ? 'text-dark' : 'text-white'
                         )}
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label={isOpen ? 'Menü schließen' : 'Menü öffnen'}

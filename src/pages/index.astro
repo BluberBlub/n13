@@ -18,14 +18,18 @@ import ContactForm from "../components/ContactForm";
 		class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
 	>
 		<!-- Background with image and stronger overlay -->
+		<!-- Background with abstract SVG pattern (Placeholder for generated image) -->
 		<div class="absolute inset-0">
 			<img
-				src="/images/hero-bg.jpg"
-				alt="N13 Store Interior"
-				class="w-full h-full object-cover scale-105 grayscale-[0.2]"
+				src="/images/hero-bg-n13.png"
+				alt="N13 Minimalist Fashion Illustration"
+				class="w-full h-full object-cover scale-105 opacity-77"
+				fetchpriority="high"
+				loading="eager"
+				decoding="sync"
 			/>
 			<div
-				class="absolute inset-0 bg-gradient-to-b from-dark/60 via-[#c2b18c]/20 to-[#f5f5f4]/80 mix-blend-multiply"
+				class="absolute inset-0 bg-gradient-to-b from-dark/40 via-[#c2b18c]/10 to-[#f5f5f4]/60 mix-blend-multiply"
 			>
 			</div>
 		</div>
@@ -47,16 +51,17 @@ import ContactForm from "../components/ContactForm";
 					src="/images/logo-n13.png"
 					alt="N13 – Mode & Lifestyle"
 					class="h-28 md:h-40 lg:h-48 w-auto mx-auto mb-2 brightness-0 invert"
+					loading="eager"
 				/>
 
 				<!-- Accent divider -->
 				<div class="w-20 h-0.5 bg-accent mx-auto my-6"></div>
 
-				<p
+				<h1
 					class="text-white text-xl md:text-2xl font-heading font-light tracking-wide mb-3"
 				>
 					Herzlich Willkommen
-				</p>
+				</h1>
 				<p
 					class="text-white/70 text-base md:text-lg font-light max-w-lg mx-auto leading-relaxed"
 				>
@@ -115,6 +120,8 @@ import ContactForm from "../components/ContactForm";
 							src="/images/about-n13.jpg"
 							alt="Natalie & Nicola Endres im N13 Store"
 							class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+							loading="lazy"
+							decoding="async"
 						/>
 					</div>
 					<!-- Decorative Backdrop Text -->
@@ -225,6 +232,8 @@ import ContactForm from "../components/ContactForm";
 										src={brand.image}
 										alt={brand.name}
 										class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+										loading="lazy"
+										decoding="async"
 									/>
 								) : (
 									<div class="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -264,10 +273,21 @@ import ContactForm from "../components/ContactForm";
 		</div>
 	</section>
 
-	<!-- Visit Us CTA Banner (Lightened) -->
 	<section
 		class="py-20 bg-bg-warm text-dark text-center relative overflow-hidden"
 	>
+		<!-- Subtle Background Image -->
+		<div
+			class="absolute inset-0 z-0 pointer-events-none opacity-10 mix-blend-multiply"
+		>
+			<img
+				src="/images/hero-bg-n13.png"
+				alt=""
+				class="w-full h-full object-cover grayscale scale-110"
+				loading="lazy"
+			/>
+		</div>
+
 		<div class="relative z-10 max-w-3xl mx-auto px-6">
 			<h2 class="font-heading text-4xl md:text-5xl mb-6">
 				Komm vorbei & lass dich beraten
