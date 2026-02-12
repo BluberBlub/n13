@@ -23,7 +23,7 @@ import cereriaMollaImage from "../assets/images/brands/brand-cereria-molla.jpg";
 import kknekkiImage from "../assets/images/brands/brand-kknekki.jpg";
 import ammannImage from "../assets/images/brands/brand-ammann.jpg";
 import kruutImage from "../assets/images/brands/brand-kruut.jpg";
-import hoperyImage from "../assets/images/brands/brand-hopery.jpg";
+import hoperyImage from "../assets/images/brands/brand-hopery.webp";
 import kunstwerkstattImage from "../assets/images/brands/brand-kunstwerkstatt.jpg";
 import rohstoffImage from "../assets/images/brands/brand-rohstoff.jpg";
 
