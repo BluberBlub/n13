@@ -107,6 +107,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
                             <a
                                 key={item.href}
                                 href={item.href}
+                                aria-current={isActive(item.href) ? 'page' : undefined}
                                 className={clsx(
                                     item.label === 'Kontakt'
                                         ? clsx(

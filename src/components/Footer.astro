@@ -95,6 +95,7 @@ import { siteConfig } from "../data/site";
                         <a
                             href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
                             class="hover:text-accent transition-colors"
+                            aria-label={`Anrufen unter ${siteConfig.company.phone}`}
                         >
                             {siteConfig.company.phone}
                         </a>
@@ -119,6 +120,7 @@ import { siteConfig } from "../data/site";
                         <a
                             href={`mailto:${siteConfig.company.email}`}
                             class="hover:text-accent transition-colors"
+                            aria-label={`E-Mail senden an ${siteConfig.company.email}`}
                         >
                             {siteConfig.company.email}
                         </a>

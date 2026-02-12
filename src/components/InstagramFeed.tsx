@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Instagram, Loader2 } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 interface InstagramPost {
     id: string;
@@ -86,17 +86,10 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
     return (
         <div className="py-12 md:py-20 relative min-h-[400px]">
             {/* Loading Spinner / Overlay */}
-            {loading && (
-                <div className="absolute inset-0 flex items-center justify-center z-20 bg-surface/80 backdrop-blur-sm transition-opacity duration-500">
-                    <div className="flex flex-col items-center gap-4">
-                        <Loader2 className="w-10 h-10 text-accent animate-spin" />
-                        <span className="text-dark text-xs uppercase tracking-widest font-bold">Lade Feed...</span>
-                    </div>
-                </div>
-            )}
+            {/* Loading Spinner Removed in favor of Skeletons */}
 
             {/* Content Grid - Always rendered to prevent CLS, specific classes control visibility */}
-            <div className={`grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 transition-opacity duration-500`}>
                 {/* On Mobile: Show first 4. On Desktop: Show all 8. */}
                 {(loading ? Array.from({ length: 8 }) : posts).map((post: any, index) => {
                     // Hide items 5-8 on mobile to keep 2 rows (2x2)
@@ -104,7 +97,11 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
 
                     if (loading) {
                         return (
-                            <div key={index} className={`aspect-square bg-gray-200 animate-pulse ${isMobileHidden}`}></div>
+                            <div key={index} className={`aspect-square bg-gray-200 animate-pulse ${isMobileHidden} relative`}>
+                                <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                                    <Instagram size={24} className="text-gray-400" />
+                                </div>
+                            </div>
                         );
                     }
 

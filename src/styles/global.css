@@ -92,10 +92,10 @@
 
   --color-text: #1C1917;
   /* Stone-900 (Soft Black) */
-  --color-text-secondary: #57534E;
-  /* Stone-600 */
-  --color-text-muted: #A8A29E;
-  /* Stone-400 */
+  --color-text-secondary: #44403C;
+  /* Stone-700 (Was Stone-600) */
+  --color-text-muted: #78716C;
+  /* Stone-500 (Was Stone-400) */
 
   --color-accent: #CBB993;
   /* Warm Sand (Komplementär zu #93A5CB) */

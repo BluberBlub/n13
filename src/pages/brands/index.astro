@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { brands } from "../../data/brands";
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/hero-n13.png";
 
 const title = "Unsere Marken";
 const description =
@@ -13,11 +15,17 @@ const description =
         class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
     >
         <div class="absolute inset-0">
-            <img
-                src="/images/hero-n13.png"
-                alt="N13 Brands"
-                class="w-full h-full object-cover scale-105 animate-kenburns"
-            />
+            <div
+                class="w-full h-full bg-stone-800 animate-pulse transition-colors duration-700"
+                id="brands-hero-loader"
+            >
+                <Image
+                    src={heroImage}
+                    alt="N13 Brands"
+                    class="w-full h-full object-cover scale-105 opacity-0 transition-opacity duration-1000"
+                    onload="this.classList.remove('opacity-0'); this.classList.add('animate-kenburns'); document.getElementById('brands-hero-loader').classList.remove('bg-stone-800', 'animate-pulse');"
+                />
+            </div>
             <div
                 class="absolute inset-0 -bottom-1 bg-gradient-to-b from-stone-900/60 via-stone-900/40 to-white"
             >
@@ -68,12 +76,15 @@ const description =
                         >
                             <div class="aspect-[4/3] bg-bg-warm relative overflow-hidden flex items-center justify-center">
                                 {brand.image ? (
-                                    <img
-                                        src={brand.image}
-                                        alt={brand.name}
-                                        loading="lazy"
-                                        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                                    />
+                                    <div class="w-full h-full bg-gray-200 animate-pulse">
+                                        <img
+                                            src={brand.image}
+                                            alt={brand.name}
+                                            loading="lazy"
+                                            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-0 transition-opacity duration-500"
+                                            onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('bg-gray-200', 'animate-pulse');"
+                                        />
+                                    </div>
                                 ) : (
                                     <div class="flex flex-col items-center justify-center p-6 text-center z-10">
                                         <span class="font-heading text-3xl text-dark mb-2 group-hover:text-accent transition-colors duration-300">
