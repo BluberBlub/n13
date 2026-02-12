@@ -1,85 +1,6 @@
 @import "tailwindcss";
 
-/* ===== Local Font Faces (DSGVO-konform, kein Google Fonts CDN) ===== */
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/oswald-300.ttf') format('truetype');
-}
 
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/oswald-400.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/oswald-500.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/oswald-600.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/oswald-700.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/syne-400.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/syne-500.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/syne-600.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/syne-700.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('/fonts/syne-800.ttf') format('truetype');
-}
 
 @theme {
   /* Design V3: Contemporary Boutique (Light, Airy, Editorial) */
@@ -113,8 +34,8 @@
   --color-success: #10B981;
   --color-error: #EF4444;
 
-  --font-heading: 'Oswald', sans-serif;
-  --font-body: 'Syne', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-marquee2: marquee2 40s linear infinite;
