@@ -447,14 +447,14 @@ import heroBgImage from "../assets/images/hero-bg-n13.png";
 							</p>
 							<button
 								class="px-6 py-3 bg-dark text-white text-xs font-bold uppercase tracking-widest hover:bg-accent transition-colors"
-								onclick="document.getElementById('map-iframe').src = 'https://www.openstreetmap.org/export/embed.html?bbox=9.8300,47.6850,9.8360,47.6890&layer=mapnik&marker=47.6870,9.8330'; document.getElementById('map-placeholder').style.display = 'none';"
+								id="map-load-btn"
 							>
 								Karte laden
 							</button>
 						</div>
 						<iframe
 							id="map-iframe"
-							src=""
+							data-src="https://www.openstreetmap.org/export/embed.html?bbox=9.8300,47.6850,9.8360,47.6890&layer=mapnik&marker=47.6870,9.8330"
 							width="100%"
 							height="100%"
 							style="border:0;"
@@ -463,6 +463,83 @@ import heroBgImage from "../assets/images/hero-bg-n13.png";
 							title="Standort N13 auf OpenStreetMap"
 							class="relative z-0"></iframe>
 					</div>
+					<script>
+						const mapPlaceholder =
+							document.getElementById("map-placeholder");
+						const mapIframe = document.getElementById("map-iframe");
+						const mapBtn = document.getElementById("map-load-btn");
+
+						function loadMap() {
+							if (mapPlaceholder && mapIframe) {
+								mapPlaceholder.style.display = "none";
+								const src = mapIframe.getAttribute("data-src");
+								if (src && !mapIframe.getAttribute("src")) {
+									mapIframe.setAttribute("src", src);
+								}
+							}
+						}
+
+						function checkConsent() {
+							const stored =
+								localStorage.getItem("n13-cookie-consent");
+							if (stored) {
+								try {
+									const parsed = JSON.parse(stored);
+									if (parsed.external) {
+										loadMap();
+									}
+								} catch (e) {
+									console.error("Error parsing consent", e);
+								}
+							}
+						}
+
+						// Check on load
+						checkConsent();
+
+						// Listen for updates
+						window.addEventListener(
+							"n13-consent-update",
+							(e: any) => {
+								if (e.detail && e.detail.external) {
+									loadMap();
+								}
+							},
+						);
+
+						// Manual Button Click
+						if (mapBtn) {
+							mapBtn.addEventListener("click", () => {
+								// Update Cookie Consent
+								const stored =
+									localStorage.getItem("n13-cookie-consent");
+								let current = {};
+								if (stored) {
+									try {
+										current = JSON.parse(stored);
+									} catch (e) {}
+								}
+								const newSettings = {
+									...current,
+									external: true,
+									timestamp: new Date().toISOString(),
+								};
+								localStorage.setItem(
+									"n13-cookie-consent",
+									JSON.stringify(newSettings),
+								);
+
+								// Dispatch Event
+								window.dispatchEvent(
+									new CustomEvent("n13-consent-update", {
+										detail: newSettings,
+									}),
+								);
+
+								loadMap();
+							});
+						}
+					</script>
 				</div>
 
 				<!-- Contact Form -->

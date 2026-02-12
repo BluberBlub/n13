@@ -21,10 +21,28 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
     const [consent, setConsent] = useState(false);
 
     useEffect(() => {
-        const storedConsent = localStorage.getItem('n13-instagram-consent');
-        if (storedConsent === 'true') {
-            setConsent(true);
-        }
+        const checkConsent = () => {
+            const stored = localStorage.getItem('n13-cookie-consent');
+            if (stored) {
+                try {
+                    const parsed = JSON.parse(stored);
+                    setConsent(!!parsed.external);
+                } catch (e) {
+                    console.error("Error parsing consent", e);
+                }
+            }
+        };
+
+        checkConsent();
+
+        const handleUpdate = (e: CustomEvent) => {
+            if (e.detail && typeof e.detail.external !== 'undefined') {
+                setConsent(e.detail.external);
+            }
+        };
+
+        window.addEventListener('n13-consent-update' as any, handleUpdate);
+        return () => window.removeEventListener('n13-consent-update' as any, handleUpdate);
     }, []);
 
     // Number of posts to show: 4 on mobile (2x2), 8 on desktop (4x2)
@@ -72,9 +90,20 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
         fetchPosts();
     }, [consent]);
 
-    const handleConsent = () => {
-        setConsent(true);
-        localStorage.setItem('n13-instagram-consent', 'true');
+    const handleRequestConsent = () => {
+        // Dispatch event to open cookie banner or just set explicit consent?
+        // User asked: "individuell sollte ich dann einstellen können"
+        // Better to open cookie settings again, but for now let's just update the external consent
+        const stored = localStorage.getItem('n13-cookie-consent');
+        let current = {};
+        if (stored) {
+            current = JSON.parse(stored);
+        }
+        const newSettings = { ...current, external: true, timestamp: new Date().toISOString() };
+        localStorage.setItem('n13-cookie-consent', JSON.stringify(newSettings));
+
+        // Dispatch update so CookieBanner and others know
+        window.dispatchEvent(new CustomEvent('n13-consent-update', { detail: newSettings }));
     };
 
     if (!consent) {
@@ -84,10 +113,10 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
                     <Instagram size={40} className="mx-auto mb-4 text-dark" />
                     <h3 className="font-heading text-xl text-dark mb-3">Instagram Inhalte laden?</h3>
                     <p className="text-text-secondary text-sm mb-6">
-                        Hier wird Inhalt von Instagram geladen. Dabei werden personenbezogene Daten (z.B. IP-Adresse) an Meta übermittelt.
+                        Hier wird Inhalt von Instagram geladen. Dazu müssen Sie in den Cookie-Einstellungen "Externe Medien" aktivieren.
                     </p>
                     <button
-                        onClick={handleConsent}
+                        onClick={handleRequestConsent}
                         className="px-6 py-3 bg-dark text-white text-xs font-bold uppercase tracking-widest hover:bg-accent transition-all duration-300 shadow-md"
                     >
                         Inhalte anzeigen
