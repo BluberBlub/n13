@@ -34,6 +34,8 @@ import heroBgImage from "../assets/images/hero-bg-n13.png";
 				fetchpriority="high"
 				loading="eager"
 				decoding="sync"
+				widths={[640, 768, 1024, 1280, 1536, heroImage.width]}
+				sizes="100vw"
 				quality={80}
 				format="avif"
 				onload="this.classList.remove('opacity-0'); this.classList.add('opacity-77', 'animate-kenburns'); document.getElementById('hero-loader').classList.remove('bg-stone-800', 'animate-pulse');"
@@ -138,6 +140,8 @@ import heroBgImage from "../assets/images/hero-bg-n13.png";
 								class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000 opacity-0 transition-opacity duration-700"
 								loading="lazy"
 								decoding="async"
+								widths={[400, 800, 1200]}
+								sizes="(max-width: 1024px) 100vw, 50vw"
 								onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('bg-stone-200', 'animate-pulse');"
 							/>
 						</div>
@@ -250,7 +254,8 @@ import heroBgImage from "../assets/images/hero-bg-n13.png";
 										<Image
 											src={brand.image}
 											alt={brand.name}
-											width={400}
+											widths={[400, 800]}
+											sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
 											class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-0 transition-opacity duration-500"
 											onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('bg-gray-200', 'animate-pulse');"
 										/>

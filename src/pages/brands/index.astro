@@ -23,6 +23,8 @@ const description =
                     src={heroImage}
                     alt="N13 Brands"
                     class="w-full h-full object-cover scale-105 opacity-0 transition-opacity duration-1000"
+                    widths={[640, 768, 1024, 1280, 1536, heroImage.width]}
+                    sizes="100vw"
                     onload="this.classList.remove('opacity-0'); this.classList.add('animate-kenburns'); document.getElementById('brands-hero-loader').classList.remove('bg-stone-800', 'animate-pulse');"
                 />
             </div>
@@ -80,7 +82,8 @@ const description =
                                         <Image
                                             src={brand.image}
                                             alt={brand.name}
-                                            width={400}
+                                            widths={[400, 800]}
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                                             class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-0 transition-opacity duration-500"
                                             onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('bg-gray-200', 'animate-pulse');"
                                         />
