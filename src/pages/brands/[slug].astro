@@ -65,18 +65,55 @@ const { brand } = Astro.props as { brand: Brand };
         class="py-24 bg-white relative z-10 -mt-12 rounded-t-[3rem] shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.1)]"
     >
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
-            <div
-                class="prose prose-lg prose-p:text-text-secondary prose-headings:font-heading prose-headings:font-light mx-auto leading-relaxed"
-            >
+            <div class="mx-auto leading-relaxed">
                 <p
                     class="text-2xl md:text-3xl font-heading text-dark text-center mb-12 leading-snug"
                 >
                     {brand.shortDescription}
                 </p>
                 <div class="w-24 h-1 bg-accent mx-auto mb-12"></div>
-                <p class="whitespace-pre-line text-lg md:text-xl font-light">
-                    {brand.description}
-                </p>
+                <div class="space-y-6">
+                    {
+                        brand.description.split("\n\n").map((block: string) => {
+                            const lines = block.split("\n");
+                            const bulletPattern = /^[✔🔥👖💯💰📍👕🎩✨]/u;
+                            const isBulletBlock = lines.some((l: string) =>
+                                bulletPattern.test(l.trim()),
+                            );
+
+                            if (isBulletBlock) {
+                                return (
+                                    <div class="space-y-2">
+                                        {lines.map((line: string) => {
+                                            const trimmed = line.trim();
+                                            if (!trimmed) return null;
+                                            if (bulletPattern.test(trimmed)) {
+                                                return (
+                                                    <div class="flex items-start gap-3 pl-2">
+                                                        <span class="text-lg leading-relaxed text-text-secondary font-light">
+                                                            {trimmed}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            }
+                                            return (
+                                                <h3 class="font-heading text-xl md:text-2xl text-dark font-medium mt-8 mb-3">
+                                                    {trimmed}
+                                                </h3>
+                                            );
+                                        })}
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <p class="text-lg md:text-xl font-light text-text-secondary leading-relaxed">
+                                    {block}
+                                </p>
+                            );
+                        })
+                    }
+                </div>
             </div>
 
             <div

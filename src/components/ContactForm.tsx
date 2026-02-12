@@ -22,6 +22,7 @@ export default function ContactForm() {
     const [errors, setErrors] = useState<FormErrors>({});
     const [consent, setConsent] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [sending, setSending] = useState(false);
 
     const validate = (): boolean => {
         const newErrors: FormErrors = {};
@@ -50,7 +51,8 @@ export default function ContactForm() {
         e.preventDefault();
         if (!validate() || !consent) return;
 
-        // Send data to PHP script
+        setSending(true);
+
         try {
             const response = await fetch('/send_mail.php', {
                 method: 'POST',
@@ -60,24 +62,30 @@ export default function ContactForm() {
                 body: JSON.stringify(formData),
             });
 
-            const result = await response.json();
-
-            if (response.ok) {
+            // Check if response is JSON (PHP might return HTML error page)
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const result = await response.json();
+                if (response.ok) {
+                    setSubmitted(true);
+                    setFormData({ name: '', email: '', message: '' });
+                    setConsent(false);
+                } else {
+                    alert(result.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+                }
+            } else if (response.ok) {
+                // PHP returned 200 but not JSON – assume success
                 setSubmitted(true);
                 setFormData({ name: '', email: '', message: '' });
                 setConsent(false);
             } else {
-                alert(result.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+                throw new Error('Server returned non-JSON error');
             }
         } catch (error) {
             console.error('Error sending mail:', error);
-            // Fallback to mailto if fetch fails (e.g. no PHP server)
-            const subject = encodeURIComponent(`Kontaktanfrage von ${formData.name}`);
-            const body = encodeURIComponent(
-                `Name: ${formData.name}\nE-Mail: ${formData.email}\n\nNachricht:\n${formData.message}`
-            );
-            window.location.href = `mailto:office@n13.store?subject=${subject}&body=${body}`;
-            setSubmitted(true);
+            alert('Beim Senden ist ein Fehler aufgetreten. Bitte versuche es erneut oder kontaktiere uns direkt unter office@n13.store');
+        } finally {
+            setSending(false);
         }
     };
 
@@ -98,11 +106,11 @@ export default function ContactForm() {
                     <CheckCircle size={32} className="text-success" />
                 </div>
                 <h3 className="font-heading text-2xl font-semibold text-dark mb-3">
-                    E-Mail-Programm geöffnet!
+                    Nachricht gesendet!
                 </h3>
                 <p className="text-text-secondary max-w-md mx-auto">
-                    Dein E-Mail-Programm wurde mit der vorbereiteten Nachricht geöffnet.
-                    Bitte sende die E-Mail ab, um uns zu kontaktieren.
+                    Vielen Dank für deine Nachricht! Wir haben sie erhalten und
+                    melden uns so schnell wie möglich bei dir.
                 </p>
                 <button
                     onClick={() => setSubmitted(false)}
@@ -133,7 +141,8 @@ export default function ContactForm() {
                 />
                 <label
                     htmlFor="contact-name"
-                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${formData.name ? 'top-1 text-xs text-dark' : 'top-4 text-base text-text-muted peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark'
+                        }`}
                 >
                     Vollständiger Name
                 </label>
@@ -161,7 +170,8 @@ export default function ContactForm() {
                 />
                 <label
                     htmlFor="contact-email"
-                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${formData.email ? 'top-1 text-xs text-dark' : 'top-4 text-base text-text-muted peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark'
+                        }`}
                 >
                     E-Mail-Adresse
                 </label>
@@ -189,7 +199,8 @@ export default function ContactForm() {
                 />
                 <label
                     htmlFor="contact-message"
-                    className="absolute left-4 top-4 text-text-muted text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark pointer-events-none"
+                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${formData.message ? 'top-1 text-xs text-dark' : 'top-4 text-base text-text-muted peer-focus:top-1 peer-focus:text-xs peer-focus:text-dark'
+                        }`}
                 >
                     Deine Nachricht...
                 </label>
@@ -211,8 +222,8 @@ export default function ContactForm() {
                     aria-required="true"
                 />
                 <label htmlFor="contact-consent" className="text-xs text-text-secondary leading-relaxed cursor-pointer select-none">
-                    Ich stimme zu, dass meine Angaben zur Erstellung der E-Mail verwendet werden.
-                    Es werden keine Daten auf einem Server gespeichert. Weitere Informationen finden Sie in der{' '}
+                    Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und Bearbeitung meiner Anfrage verwendet werden.
+                    Weitere Informationen finden Sie in der{' '}
                     <a
                         href="/datenschutzerklaerung"
                         className="text-accent hover:underline relative z-10"
@@ -227,12 +238,12 @@ export default function ContactForm() {
             {/* Submit */}
             <button
                 type="submit"
-                disabled={!consent}
+                disabled={!consent || sending}
                 className="w-full relative overflow-hidden group flex items-center justify-center gap-3 px-8 py-5 bg-white border border-dark text-dark font-bold tracking-[0.2em] uppercase hover:bg-dark hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 shadow-xl"
             >
                 <span className="relative z-10 flex items-center gap-2">
                     <Send size={16} />
-                    Nachricht senden
+                    {sending ? 'Wird gesendet...' : 'Nachricht senden'}
                 </span>
             </button>
         </form>

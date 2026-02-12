@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.n13.store/sitemap-index.xml
+Sitemap: https://n13.niko-endres.de/sitemap-index.xml

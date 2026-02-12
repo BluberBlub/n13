@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.n13.store',
+  site: 'https://n13.niko-endres.de',
   output: 'static',
   integrations: [
     react(),
