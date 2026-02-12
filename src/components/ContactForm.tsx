@@ -46,20 +46,39 @@ export default function ContactForm() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate() || !consent) return;
 
-        // DSGVO-konform: mailto-Link wird geöffnet, keine Daten werden an einen Server gesendet
-        const subject = encodeURIComponent(`Kontaktanfrage von ${formData.name}`);
-        const body = encodeURIComponent(
-            `Name: ${formData.name}\nE-Mail: ${formData.email}\n\nNachricht:\n${formData.message}`
-        );
-        window.location.href = `mailto:office@n13.store?subject=${subject}&body=${body}`;
+        // Send data to PHP script
+        try {
+            const response = await fetch('/send_mail.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setSubmitted(true);
-        setFormData({ name: '', email: '', message: '' });
-        setConsent(false);
+            const result = await response.json();
+
+            if (response.ok) {
+                setSubmitted(true);
+                setFormData({ name: '', email: '', message: '' });
+                setConsent(false);
+            } else {
+                alert(result.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+            }
+        } catch (error) {
+            console.error('Error sending mail:', error);
+            // Fallback to mailto if fetch fails (e.g. no PHP server)
+            const subject = encodeURIComponent(`Kontaktanfrage von ${formData.name}`);
+            const body = encodeURIComponent(
+                `Name: ${formData.name}\nE-Mail: ${formData.email}\n\nNachricht:\n${formData.message}`
+            );
+            window.location.href = `mailto:office@n13.store?subject=${subject}&body=${body}`;
+            setSubmitted(true);
+        }
     };
 
     const handleChange = (
