@@ -18,6 +18,14 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
     const [posts, setPosts] = useState<InstagramPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [consent, setConsent] = useState(false);
+
+    useEffect(() => {
+        const storedConsent = localStorage.getItem('n13-instagram-consent');
+        if (storedConsent === 'true') {
+            setConsent(true);
+        }
+    }, []);
 
     // Number of posts to show: 4 on mobile (2x2), 8 on desktop (4x2)
     // We fetch 8 to cover both cases.
@@ -25,6 +33,8 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
     const DISPLAY_COUNT_MOBILE = 4;
 
     useEffect(() => {
+        if (!consent) return;
+
         async function fetchPosts() {
             try {
                 const token = import.meta.env.PUBLIC_INSTAGRAM_TOKEN;
@@ -60,9 +70,34 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
             }
         }
         fetchPosts();
-    }, []);
+    }, [consent]);
 
-    // Fallback content if no posts (error or no token)
+    const handleConsent = () => {
+        setConsent(true);
+        localStorage.setItem('n13-instagram-consent', 'true');
+    };
+
+    if (!consent) {
+        return (
+            <div className="py-20 bg-stone-50 text-center">
+                <div className="max-w-md mx-auto p-8 bg-white border border-border shadow-sm rounded-lg">
+                    <Instagram size={40} className="mx-auto mb-4 text-dark" />
+                    <h3 className="font-heading text-xl text-dark mb-3">Instagram Inhalte laden?</h3>
+                    <p className="text-text-secondary text-sm mb-6">
+                        Hier wird Inhalt von Instagram geladen. Dabei werden personenbezogene Daten (z.B. IP-Adresse) an Meta übermittelt.
+                    </p>
+                    <button
+                        onClick={handleConsent}
+                        className="px-6 py-3 bg-dark text-white text-xs font-bold uppercase tracking-widest hover:bg-accent transition-all duration-300 shadow-md"
+                    >
+                        Inhalte anzeigen
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    // Fallback content if no posts (error or no token) and loading is done
     if (!loading && (error || posts.length === 0)) {
         return (
             <div className="text-center p-12 border-2 border-dashed border-dark/20 relative group overflow-hidden">
@@ -85,9 +120,6 @@ export default function InstagramFeed({ accessToken }: InstagramFeedProps) {
 
     return (
         <div className="py-12 md:py-20 relative min-h-[400px]">
-            {/* Loading Spinner / Overlay */}
-            {/* Loading Spinner Removed in favor of Skeletons */}
-
             {/* Content Grid - Always rendered to prevent CLS, specific classes control visibility */}
             <div className={`grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 transition-opacity duration-500`}>
                 {/* On Mobile: Show first 4. On Desktop: Show all 8. */}
